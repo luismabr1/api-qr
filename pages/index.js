@@ -8,16 +8,6 @@ import QR from '../components/QReader'
 
 export default function Home() {
   const [user, setUser] = useState(undefined)
-  
-/*   useEffect(() => {
-    onAuthStateChanged(setUser)
-  }, [])
-
-  const handleClick = () => {
-    loginWithGitHub().then(setUser).catch(err => {
-      console.log(err)
-    })
-  } */
 
   return (
     <>
@@ -29,7 +19,6 @@ export default function Home() {
 
       <AppLayout>
         <section>
-          <img src='/devter-logo.png' alt='Logo' />
           <h1>MoDO QR</h1>
           <h2>Scaner<br />for security 👩‍💻👨‍💻</h2>
 
