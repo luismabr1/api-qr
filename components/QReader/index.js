@@ -22,7 +22,7 @@ const QR = () => {
             delay={300}
             onError={(err) => handleError(err)}
             onScan={(data) => handleScan(data)}
-            style={{ width: '50vh' }}
+            style={{ width: '40vh' }}
             />
 
             
