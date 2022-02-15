@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import dynamic from "next/dynamic";
+import Result from '../Result';
 
 const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false});
 
@@ -21,11 +22,11 @@ const QR = () => {
             delay={300}
             onError={(err) => handleError(err)}
             onScan={(data) => handleScan(data)}
-            style={{ width: '100%' }}
+            style={{ width: '50vh' }}
             />
 
-
-            <p>{result}</p>
+            
+             <p>{result}</p>
 
 
         </>
