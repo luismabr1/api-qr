@@ -2,13 +2,12 @@ import {useEffect, useState} from 'react'
 import Head from 'next/head'
 import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
-import Button from '../components/Button'
 import QR from '../components/QReader'
 
 
-export default function Home() {
+const Home = ( {posts} ) => {
   const [user, setUser] = useState(undefined)
-
+  console.log(posts)
   return (
     <>
 
@@ -23,7 +22,11 @@ export default function Home() {
           <h2>Scaner<br />for security 👩‍💻👨‍💻</h2>
 
           <div>
-
+            <ul>
+              {posts.map(post =>(
+                  <li key={post.id}> {post.name} </li>
+              ))}         
+            </ul>
             <QR />
             
           </div>
@@ -58,3 +61,23 @@ export default function Home() {
     </>
   )
 }
+
+// This function gets called at build time on server-side.
+// It won't be called on client-side, so you can even do
+// direct database queries.
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const res = await fetch('http://localhost:3001/')
+  const posts = await res.json()
+
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      posts,
+    },
+  }
+}
+
+export default Home;

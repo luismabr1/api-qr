@@ -4,7 +4,7 @@ import Result from '../Result';
 
 const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false});
 
-const QR = () => {
+const QR = (props) => {
     const [result, setResult] = useState('No hay resultados')
 
     const handleScan = (data) =>  {
@@ -24,8 +24,7 @@ const QR = () => {
             onScan={(data) => handleScan(data)}
             style={{ width: '40vh' }}
             />
-
-            
+{console.log(result)}
              <p>{result}</p>
 
 
