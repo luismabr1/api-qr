@@ -5,7 +5,7 @@ const mysqlConnection  = require('../../database');
 
 // GET all Employees
 router.get('/', (req, res) => {
-  mysqlConnection.query('SELECT * FROM employee', (err, rows, fields) => {
+  mysqlConnection.query('SELECT * FROM cargos', (err, rows, fields) => {
     if(!err) {
       res.json(rows);
     } else {
@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 // GET An Employee
 router.get('/:id', (req, res) => {
   const { id } = req.params; 
-  mysqlConnection.query('SELECT * FROM employee WHERE id = ?', [id], (err, rows, fields) => {
+  mysqlConnection.query('SELECT * FROM cargos WHERE id = ?', [id], (err, rows, fields) => {
     if (!err) {
       res.json(rows[0]);
     } else {
@@ -29,7 +29,7 @@ router.get('/:id', (req, res) => {
 // DELETE An Employee
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  mysqlConnection.query('DELETE FROM employee WHERE id = ?', [id], (err, rows, fields) => {
+  mysqlConnection.query('DELETE FROM usuarios WHERE id = ?', [id], (err, rows, fields) => {
     if(!err) {
       res.json({status: 'Employee Deleted'});
     } else {
@@ -40,17 +40,21 @@ router.delete('/:id', (req, res) => {
 
 // INSERT An Employee
 router.post('/', (req, res) => {
-  const {id, name, salary} = req.body;
-  console.log(id, name, salary);
+  const {nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id} = req.body;
+  console.log(nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id);
   const query = `
-    SET @id = ?;
-    SET @name = ?;
-    SET @salary = ?;
-    CALL employeeAddOrEdit(@id, @name, @salary);
+    SET @nombre = ?;
+    SET @apellido = ?;
+    SET @cedula = ?;
+    SET @sexo = ?;
+    SET @departamento_id = ?;
+    SET @equipo_id = ?;
+    SET @cargo_id = ?;
+    CALL userAddOrEdit(@nombre, @apellido, @cedula, @sexo, @departamento_id, @equipo_id, @cargo_id);
   `;
-  mysqlConnection.query(query, [id, name, salary], (err, rows, fields) => {
+  mysqlConnection.query(query, [nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id], (err, rows, fields) => {
     if(!err) {
-      res.json({status: 'Employeed Saved'});
+      res.json({status: 'Usuario Saved'});
     } else {
       console.log(err);
     }

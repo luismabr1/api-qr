@@ -14,6 +14,7 @@ const Home = ( {posts} ) => {
       <Head>
         <title>devter 🐦</title>
         <link rel="icon" href="/favicon.ico" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
       </Head>
 
       <AppLayout>
@@ -24,7 +25,7 @@ const Home = ( {posts} ) => {
           <div>
             <ul>
               {posts.map(post =>(
-                  <li key={post.id}> {post.name} </li>
+                  <li key={post.id}> {post.nombre} </li>
               ))}         
             </ul>
             <QR />
