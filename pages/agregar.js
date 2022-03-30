@@ -2,32 +2,55 @@ import {useEffect, useState} from 'react'
 import Head from 'next/head'
 import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
-import QR from '../components/QReader'
 
 
 const Home = ( {posts} ) => {
+    const [userName,setUserName] = useState("");
+    const [title,setTitle] = useState("");
+    const [text,setText] = useState("");
+    
+    const submitEquipo = () => {
+    Axios.post('http://localhost:3001/', {userName: userName, title: title, text:text})
+    }
   console.log(posts)
   return (
     <>
 
       <Head>
         <title>devter 🐦</title>
-        <link rel="icon" href="/favicon.ico" />
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
       </Head>
 
       <AppLayout>
         <section>
-          <h1>MoDO QR</h1>
+          <h1>Agregar Equipos</h1>
           <h2>Scaner<br />for security 👩‍💻👨‍💻</h2>
 
           <div>
-            <ul>
+
+          <div className="CreatePost">
+            <div className="uploadPost">
+                <label>: </label>
+                <input type="text" onChange={(e)=> {
+                    setUserName(e.target.value)
+                }}/>
+                <label>Title: </label>
+                <input type="text" onChange={(e)=>{
+                    setTitle(e.target.value)
+                }}/>
+                <label>Post Text</label>
+                <textarea 
+                onChange={(e)=>{
+                    setText(e.target.value)
+                }}
+                ></textarea>
+            <button onClick={submitEquipo}>Submit Post</button>
+            </div>
+        </div>
+            {/* <ul>
               {posts.map(post =>(
                   <li key={post.id}> {post.nombre} </li>
               ))}         
-            </ul>
-            <QR />
+            </ul> */}
             
           </div>
           

@@ -4,8 +4,20 @@ const router = express.Router();
 const mysqlConnection  = require('../../database');
 
 // GET all Employees
+
 router.get('/', (req, res) => {
   mysqlConnection.query('SELECT * FROM cargos', (err, rows, fields) => {
+    if(!err) {
+      res.json(rows);
+    } else {
+      console.log(err);
+    }
+  });  
+});
+
+
+router.get('/listar', (req, res) => {
+  mysqlConnection.query('SELECT * FROM usuarios', (err, rows, fields) => {
     if(!err) {
       res.json(rows);
     } else {
@@ -39,19 +51,10 @@ router.delete('/:id', (req, res) => {
 });
 
 // INSERT An Employee
-router.post('/', (req, res) => {
+router.post('/agregar', (req, res) => {
   const {nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id} = req.body;
   console.log(nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id);
-  const query = `
-    SET @nombre = ?;
-    SET @apellido = ?;
-    SET @cedula = ?;
-    SET @sexo = ?;
-    SET @departamento_id = ?;
-    SET @equipo_id = ?;
-    SET @cargo_id = ?;
-    CALL userAddOrEdit(@nombre, @apellido, @cedula, @sexo, @departamento_id, @equipo_id, @cargo_id);
-  `;
+  const query = 'INSERT INTO `usuarios`(`nombre`, `apellido`, `cedula`, `sexo`, `departamento_id`, `equipo_id`, `cargo_id`) VALUES (?,?,?,?,?,?,?)'
   mysqlConnection.query(query, [nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id], (err, rows, fields) => {
     if(!err) {
       res.json({status: 'Usuario Saved'});

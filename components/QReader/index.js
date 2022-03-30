@@ -2,6 +2,7 @@ import {useState} from 'react'
 import dynamic from "next/dynamic";
 import Result from '../Result';
 import Button from '../Button';
+import CheckIcon from '../Check';
 
 const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false});
 
@@ -33,7 +34,10 @@ const QR = (props) => {
           {console.log(result)}
 
           {visible &&
-          <Button className='visible'>Detalles</Button>  
+          <div>
+            <CheckIcon />
+            <Button >Detalles</Button>  
+          </div>
 
           }
              <p>{result}</p>

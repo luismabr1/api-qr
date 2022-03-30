@@ -2,10 +2,9 @@ import {useEffect, useState} from 'react'
 import Head from 'next/head'
 import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
-import QR from '../components/QReader'
 
 
-const Home = ( {posts} ) => {
+const AgregarEquipos = ( {posts} ) => {
   console.log(posts)
   return (
     <>
@@ -18,7 +17,7 @@ const Home = ( {posts} ) => {
 
       <AppLayout>
         <section>
-          <h1>MoDO QR</h1>
+          <h1>Listar </h1>
           <h2>Scaner<br />for security 👩‍💻👨‍💻</h2>
 
           <div>
@@ -27,7 +26,6 @@ const Home = ( {posts} ) => {
                   <li key={post.id}> {post.nombre} </li>
               ))}         
             </ul>
-            <QR />
             
           </div>
           
@@ -80,4 +78,4 @@ export async function getStaticProps() {
   }
 }
 
-export default Home;
+export default AgregarEquipos;
