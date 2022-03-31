@@ -2,17 +2,11 @@ import {useEffect, useState} from 'react'
 import Head from 'next/head'
 import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
+import FormEquipos from '../components/FormEquipos'
 
 
 const Home = ( {posts} ) => {
-    const [userName,setUserName] = useState("");
-    const [title,setTitle] = useState("");
-    const [text,setText] = useState("");
-    
-    const submitEquipo = () => {
-    Axios.post('http://localhost:3001/', {userName: userName, title: title, text:text})
-    }
-  console.log(posts)
+
   return (
     <>
 
@@ -21,40 +15,7 @@ const Home = ( {posts} ) => {
       </Head>
 
       <AppLayout>
-        <section>
-          <h1>Agregar Equipos</h1>
-          <h2>Scaner<br />for security 👩‍💻👨‍💻</h2>
-
-          <div>
-
-          <div className="CreatePost">
-            <div className="uploadPost">
-                <label>: </label>
-                <input type="text" onChange={(e)=> {
-                    setUserName(e.target.value)
-                }}/>
-                <label>Title: </label>
-                <input type="text" onChange={(e)=>{
-                    setTitle(e.target.value)
-                }}/>
-                <label>Post Text</label>
-                <textarea 
-                onChange={(e)=>{
-                    setText(e.target.value)
-                }}
-                ></textarea>
-            <button onClick={submitEquipo}>Submit Post</button>
-            </div>
-        </div>
-            {/* <ul>
-              {posts.map(post =>(
-                  <li key={post.id}> {post.nombre} </li>
-              ))}         
-            </ul> */}
-            
-          </div>
-          
-        </section>
+          <FormEquipos />
       </AppLayout>
 
       <style jsx>{`

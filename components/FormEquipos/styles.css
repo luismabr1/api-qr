@@ -1,0 +1,27 @@
+/* FORMS */
+.main {
+    min-height: 100vh;
+    padding: 4rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.uploadPost{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: auto;
+    border: 2px solid coral;
+  }
+  
+  .CreatePost {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh -80px);
+  }

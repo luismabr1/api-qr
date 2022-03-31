@@ -52,10 +52,10 @@ router.delete('/:id', (req, res) => {
 
 // INSERT An Employee
 router.post('/agregar', (req, res) => {
-  const {nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id} = req.body;
-  console.log(nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id);
+  const {nombre, apellido, cedula, sexo, departamento, equipo, cargo} = req.body;
+  console.log(nombre, apellido, cedula, sexo, departamento, equipo, cargo);
   const query = 'INSERT INTO `usuarios`(`nombre`, `apellido`, `cedula`, `sexo`, `departamento_id`, `equipo_id`, `cargo_id`) VALUES (?,?,?,?,?,?,?)'
-  mysqlConnection.query(query, [nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id], (err, rows, fields) => {
+  mysqlConnection.query(query, [nombre, apellido, cedula, sexo, departamento, equipo, cargo], (err, rows, fields) => {
     if(!err) {
       res.json({status: 'Usuario Saved'});
     } else {

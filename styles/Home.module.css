@@ -115,3 +115,22 @@
   }
 }
 
+
+/* FORMS */
+
+.uploadPost{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  width: 500px;
+  border: 2px solid coral;
+}
+
+.CreatePost {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh -80px);
+}
