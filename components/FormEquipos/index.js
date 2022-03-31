@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Navbar from '../Navbar'
 
 const FormEquipos = () =>{
   const [nombre,setNombre] = useState("");
@@ -30,8 +31,15 @@ const FormEquipos = () =>{
       <>
 
       <div className="main">
+        <div className="mini-list">
+        <h2>Scaner<br />for security 👩‍💻👨‍💻</h2>
+          otro div
+        </div>
+        <header>
           <h1>Agregar Equipos</h1>
-          <h2>Scaner<br />for security 👩‍💻👨‍💻</h2>
+
+        </header>
+
 
           <div className="CreatePost">
             <div className="uploadPost">

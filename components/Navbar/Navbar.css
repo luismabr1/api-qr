@@ -1,0 +1,17 @@
+nav{
+    align-items: center;
+    background: #ffffffaa;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #eee;
+    top: 20px;
+    display: flex;
+    height: 50px;
+    justify-content: space-around;
+    left: 0;
+    margin: 0 auto;
+    max-width: 500px;
+    position:sticky;
+    right: 0;
+    width: 100%;
+/*     z-index: 1000; */ 
+}
