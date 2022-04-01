@@ -13,7 +13,6 @@ const Home = ( {posts} ) => {
       <Head>
         <title>devter 🐦</title>
         <link rel="icon" href="/favicon.ico" />
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
       </Head>
 
       <AppLayout>
@@ -68,7 +67,7 @@ const Home = ( {posts} ) => {
 export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch('http://localhost:3001/listar')
+  const res = await fetch('http://localhost:3001/listarUsuarios')
   const posts = await res.json()
 
   // By returning { props: { posts } }, the Blog component

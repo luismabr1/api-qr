@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 });
 
 
-router.get('/listar', (req, res) => {
+router.get('/listarUsuarios', (req, res) => {
   mysqlConnection.query('SELECT * FROM usuarios', (err, rows, fields) => {
     if(!err) {
       res.json(rows);
@@ -25,6 +25,37 @@ router.get('/listar', (req, res) => {
     }
   });  
 });
+
+router.get('/listarEquipos', (req, res) => {
+  mysqlConnection.query('SELECT * FROM equipos', (err, rows, fields) => {
+    if(!err) {
+      res.json(rows);
+    } else {
+      console.log(err);
+    }
+  });  
+});
+
+router.get('/listarCargos', (req, res) => {
+  mysqlConnection.query('SELECT * FROM cargos', (err, rows, fields) => {
+    if(!err) {
+      res.json(rows);
+    } else {
+      console.log(err);
+    }
+  });  
+});
+
+router.get('/listarDepartamentos', (req, res) => {
+  mysqlConnection.query('SELECT * FROM departamentos', (err, rows, fields) => {
+    if(!err) {
+      res.json(rows);
+    } else {
+      console.log(err);
+    }
+  });  
+});
+
 
 // GET An Employee
 router.get('/:id', (req, res) => {

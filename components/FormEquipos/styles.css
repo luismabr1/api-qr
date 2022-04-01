@@ -1,7 +1,7 @@
 /* FORMS */
 .main {
-    min-height: 100vh;
-    padding: 4rem 0;
+    min-height: 90vh;
+    padding: 10px 0;
     flex: 1;
     display: flex;
     flex-direction: column;
