@@ -11,8 +11,7 @@ const FormEquipos = () =>{
 
 
   const handleEquipo = () => {
-/*     useEffect(() => { */
-      // POST request using fetch inside useEffect React hook
+      
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -22,8 +21,6 @@ const FormEquipos = () =>{
           .then(response => response.json())
           .then(data => setEquipo(data.id));
   
-  // empty dependency array means this effect will only run once (like componentDidMount in classes)
-/*   }, []); */
   }
 
   return(

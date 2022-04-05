@@ -1,23 +1,30 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react';
 
-const MenuListas = ({data}) => {
-    console.log(Object.values(data))
-    const [lists, setLists] = useState(data)
+const MenuListas = (dataListas) => {
+    const [lists, setLists] = useState()
+
+ /*    const cadena = JSON.stringify(data)
+    console.log(cadena)
+    const cadena2 = JSON.parse(cadena)
+    console.log(cadena2)
+    const cadena3 = Object.values(cadena2.data.usuarios)
+    const cadena4 = Object.values(cadena3)
+    const cadena5 = Object.values(cadena4)
+    const cadena6 = Object.keys(cadena5)
+    console.log(cadena3)
+    console.log(cadena6) */
 
 
-const handleClick = (data) =>{
-    if(data){
-        console.table(data)
-        setLists(data.usuarios)
-        
-    } 
+const handleClick = async () =>{
+/*     console.table(dataListas) */
+ setLists(dataListas)
 }
 
     return(
         <>
             <nav>
-                <label onClick={(data) => handleClick(data)}>Usuarios</label>
+                <label onClick={handleClick}>Usuarios</label>
                 <Link href='/'>Equipos</Link>
                 <Link href='/'>Cargos</Link>
                 <Link href='/'>Departamentos</Link>
@@ -25,16 +32,13 @@ const handleClick = (data) =>{
         
             <div className="mini-list">
                 {lists &&
-            
                     <ul>
-                        {Object.values(lists).map(list =>(
-                            <li key={list.id}> {list.nombre} </li>
-                        ))}         
-                    </ul>  
-
+                        {Object.values(lists).map(list =>{
+                            {console.log(lists.data)}
+                            <li key={list.id}> {list} </li>
+                })}         
+                    </ul>
                 }
-            
-
             </div>
         </>
 

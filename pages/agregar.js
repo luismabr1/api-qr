@@ -3,20 +3,32 @@ import Head from 'next/head'
 import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
 import FormEquipos from '../components/FormEquipos'
-import Listas from '../components/Listas'
+import ListasUsuarios from '../components/ListasUsuarios'
 
 
 const Home = (props) => {
-  /* manten el props fuera de comillas */
-  console.table(props)
+  /* manten el props fuera de llaves */
+   console.log(typeof props)
+  let prueba = props
+   console.table(prueba.equipos)
+   const users=prueba.usuarios
+   const equipos=prueba.equipos
+   const departamentos=prueba.departamentos
+   const cargos=prueba.cargos 
+
+
   return (
     <>
       <Head>
-        <title>devter 🐦</title>
-        <meta httpEquiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://www.google.com"></meta>
+        <title>MoDo QR</title>
       </Head>
       <AppLayout>
-          <Listas data={props} />
+          <ListasUsuarios 
+            users={users}
+            equipos={equipos}
+            departamentos={departamentos}
+            cargos={cargos}
+          />
           <FormEquipos />
       </AppLayout>
 
@@ -49,7 +61,7 @@ const Home = (props) => {
   )
 }
 
-export async function getStaticProps() {
+ export async function getStaticProps() {
   const [usuariosRes, equiposRes, departamentosRes, cargosRes] = await Promise.all([
     fetch('http://localhost:3001/listarUsuarios'), 
     fetch('http://localhost:3001/listarEquipos'),
@@ -62,7 +74,6 @@ export async function getStaticProps() {
     departamentosRes.json(),
     cargosRes.json()
   ]);
-console.log(usuarios)
   return { props: { usuarios, equipos, departamentos, cargos } };
 }
 

@@ -8,7 +8,7 @@ const mysqlConnection  = require('../../database');
 router.get('/', (req, res) => {
   mysqlConnection.query('SELECT * FROM cargos', (err, rows, fields) => {
     if(!err) {
-      res.json(rows);
+      res.json(Object.keys(rows));
     } else {
       console.log(err);
     }
