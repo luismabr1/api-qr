@@ -1,18 +1,13 @@
 import { useState, useEffect } from "react";
 
-const FormEquipos = (props) =>{
-    const departamentos1 = props.departamentos
-    const cargos1 = props.cargos
-    const equipos1 = props.equipo
-    console.log(equipos1)
-
+const FormEquipos = () =>{
   const [nombre,setNombre] = useState("");
   const [apellido,setApellido] = useState("");
   const [cedula,setCedula] = useState("");
   const [sexo,setSexo] = useState("");
-  const [departamento,setDepartamento] = useState(props.departamentos);
+  const [departamento,setDepartamento] = useState(null);
   const [equipo,setEquipo] = useState(null);
-  const [cargos,setCargo] = useState(props.cargos);
+  const [cargo,setCargo] = useState(null);
 
 
   const handleEquipo = () => {
@@ -33,7 +28,7 @@ const FormEquipos = (props) =>{
 
       <div className="main">
 
-          <h1>Agregar Equipos</h1>
+          <h1>Agregar usuarios</h1>
 
 
           <div className="CreatePost">
@@ -55,36 +50,17 @@ const FormEquipos = (props) =>{
                     setSexo(e.target.value)
                 }}/>
                 <label>departamento: </label>
-                <select name="select" onChange={e => setDepartamento(e.target.value)} >
-                
-                    {departamentos1.map(department => {
-                                return(
-                                    <option key={department.id} value={department.id}>{department.nombre}</option>
-                                )
-                            }   
-                    )}
-
-                </select>
+                <input type="number" onChange={(e)=>{
+                    setDepartamento(e.target.value)
+                }}/>
                 <label>Equipo: </label>
-                <select name="select" onChange={e => setDepartamento(e.target.value)} >
-                
-                    {equipos1.map(equipo => {
-                                return(
-                                    <option key={equipo.id} value={equipo.id}>{equipo.nombre}</option>
-                                )
-                            }   
-                    )}
-
-                </select>
+                <input type="number" onChange={(e)=>{
+                    setEquipo(e.target.value)
+                }}/>
                 <label>Cargo: </label>
-                <select name="select" onChange={e => setCargo(e.target.value)}>
-                    {cargos1.map( cargo => {
-                                return(
-                                    <option key={cargo.id}value={cargo.id}>{cargo.nombre}</option>
-                                )
-                            }   
-                    )}
-                </select>
+                <input type="number" onChange={(e)=>{
+                    setCargo(e.target.value)
+                }}/>
                 <button onClick={handleEquipo}>Submit Post</button>
             </div>
           </div>

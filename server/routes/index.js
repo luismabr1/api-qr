@@ -8,7 +8,7 @@ const mysqlConnection  = require('../../database');
 router.get('/', (req, res) => {
   mysqlConnection.query('SELECT * FROM cargos', (err, rows, fields) => {
     if(!err) {
-      res.json(Object.keys(rows));
+      res.json(rows);
     } else {
       console.log(err);
     }
@@ -26,6 +26,17 @@ router.get('/listarUsuarios', (req, res) => {
   });  
 });
 
+router.get('/listarUsuario/:id', (req, res) => {
+  const { id } = req.params; 
+  mysqlConnection.query('SELECT * FROM usuario WHERE id = ?', [id], (err, rows, fields) => {
+    if (!err) {
+      res.json(rows[0]);
+    } else {
+      console.log(err);
+    }
+  });
+});
+
 router.get('/listarEquipos', (req, res) => {
   mysqlConnection.query('SELECT * FROM equipos', (err, rows, fields) => {
     if(!err) {
@@ -34,6 +45,19 @@ router.get('/listarEquipos', (req, res) => {
       console.log(err);
     }
   });  
+});
+
+
+// GET An equipo by ID
+router.get('/listarEquipo/:id', (req, res) => {
+  const { id } = req.params; 
+  mysqlConnection.query('SELECT * FROM equipos WHERE id = ?', [id], (err, rows, fields) => {
+    if (!err) {
+      res.json(rows[0]);
+    } else {
+      console.log(err);
+    }
+  });
 });
 
 router.get('/listarCargos', (req, res) => {
@@ -82,7 +106,7 @@ router.delete('/:id', (req, res) => {
 });
 
 // INSERT An Employee
-router.post('/agregar', (req, res) => {
+router.post('/equipos', (req, res) => {
   const {nombre, apellido, cedula, sexo, departamento, equipo, cargo} = req.body;
   console.log(nombre, apellido, cedula, sexo, departamento, equipo, cargo);
   const query = 'INSERT INTO `usuarios`(`nombre`, `apellido`, `cedula`, `sexo`, `departamento_id`, `equipo_id`, `cargo_id`) VALUES (?,?,?,?,?,?,?)'

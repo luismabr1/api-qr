@@ -29,7 +29,11 @@ const Home = (props) => {
             departamentos={departamentos}
             cargos={cargos}
           />
-          <FormEquipos />
+          <FormEquipos
+            departamentos={departamentos}
+            cargos={cargos}
+            equipo={equipos}
+          />
       </AppLayout>
 
       <style jsx>{`

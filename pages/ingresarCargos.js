@@ -1,44 +1,39 @@
-import {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Head from 'next/head'
 import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
-import QR from '../components/QReader'
+import FormCargos from '../components/FormCargos'
+import ListasUsuarios from '../components/ListasUsuarios'
 
 
-const Home = ( props ) => {
-  const equipos=props.equipos
-  const usuarios= props.usuarios
-  const cargos=props.cargos
-  const departamentos = props.departamentos
+const Home = (props) => {
+  /* manten el props fuera de llaves */
+   console.log(typeof props)
+  let prueba = props
+   console.table(prueba.equipos)
+   const users=prueba.usuarios
+   const equipos=prueba.equipos
+   const departamentos=prueba.departamentos
+   const cargos=prueba.cargos 
+
+
   return (
     <>
-
       <Head>
-        <title>devter 🐦</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>MoDo QR</title>
       </Head>
-
       <AppLayout>
-        <section>
-          <h1>MoDO QR</h1>
-          <h2>Scaner<br />for security 👩‍💻👨‍💻</h2>
-
-          <div>
-           {/*  <ul>
-              {posts.map(post =>(
-                  <li key={post.id}> {post.nombre} </li>
-              ))}         
-            </ul> */}
-            <QR
-              usuarios={usuarios}
-              cargos={cargos}
-              departamentos={departamentos}
-            
-            />
-            
-          </div>
-          
-        </section>
+          <ListasUsuarios 
+            users={users}
+            equipos={equipos}
+            departamentos={departamentos}
+            cargos={cargos}
+          />
+          <FormCargos
+            departamentos={departamentos}
+            cargos={cargos}
+            equipo={equipos}
+          />
       </AppLayout>
 
       <style jsx>{`
@@ -47,6 +42,7 @@ const Home = ( props ) => {
         }
         div {
           margin-top: 16px;
+          overflow: scroll;
         }
         section {
           display: grid;
@@ -69,9 +65,7 @@ const Home = ( props ) => {
   )
 }
 
-export default Home;
-
-export async function getStaticProps() {
+ export async function getStaticProps() {
   const [usuariosRes, equiposRes, departamentosRes, cargosRes] = await Promise.all([
     fetch('http://localhost:3001/listarUsuarios'), 
     fetch('http://localhost:3001/listarEquipos'),
@@ -86,3 +80,7 @@ export async function getStaticProps() {
   ]);
   return { props: { usuarios, equipos, departamentos, cargos } };
 }
+
+
+
+export default Home;

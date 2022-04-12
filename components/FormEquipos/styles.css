@@ -38,12 +38,15 @@
   }
 
   .mini-list{
-    min-height: 20%;
+    min-height: 125px;
     width: 100%;
     padding: 4rem 0;
     flex: 1;
-    display: flex;
+    display: grid;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(1, .1, .1, .1);
   }

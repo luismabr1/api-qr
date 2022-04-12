@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react';
 
 const ListasUsuarios = (props) => {
     const [lists, setLists] = useState(false)
-    const [serial, setSerial] = useState(false)
+    const [serial, setSerial] = useState([])
     const [show, setShow]= useState(false)
-    console.log(props.users)
     const users = props.users
     const equipos = props.equipos
+    console.log(props.equipos)
     const departamentos = props.departamentos
     const cargos = props.cargos
 
@@ -31,10 +31,10 @@ const ListasUsuarios = (props) => {
     return (
         <>
             <nav>
-                <label onClick={handleUsers}>Usuarios</label>
-                <label onClick={handleEquipos}>Equipo</label>
-                <label onClick={handleDepartamentos}>Departamentos</label>
-                <label onClick={handleCargos}>Cargos</label>
+                <label onClick={handleUsers}><Link href="/ingresarUsuarios">Usuarios</Link></label>
+                <label onClick={handleEquipos}><Link href="/ingresarEquipos">Equipos</Link></label>
+                <label onClick={handleDepartamentos}><Link href="/ingresarDepartamentos">Departamentos</Link>s</label>
+                <label onClick={handleCargos}><Link href="/ingresarCargos">Cargos</Link></label>
             </nav>
             <div className="mini-list">
                 {show &&
@@ -52,15 +52,18 @@ const ListasUsuarios = (props) => {
                 
                 <ul>
                     {serial.map(list => {
-
-                        return(
-                            <li key={list.id}> {list.serial} </li>
-                        )
+                            return(
+                                <li key={list.id}> {list.serial} </li>
+                            )
                         }   
                     )}         
                 </ul>
                 
                 }
+            <main>
+                {props.children}
+            </main>
+
             </div>
         </>
     );
