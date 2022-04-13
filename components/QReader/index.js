@@ -1,46 +1,59 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import dynamic from "next/dynamic";
-import Button from '../Button';
-import CheckIcon from '../Check';
+import AuthButton from '../Approve';
 
 const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false});
 
 const QR = (props) => {
-    console.log(props.equipos)
-    const [result, setResult] = useState('No hay resultados')
-    const [visible, setVisible] = useState(false)
+    const [result, setResult] = useState()
+    const [visible, setVisible] = useState(null)
+    const [error, setError] = useState()
     const [registro, setRegistro] = useState()
     const [marca, setMarca] = useState()
     const [tipo, setTipo] = useState()
     const [usuarios, setUsuarios] = useState()
 
-
     const handleScan = async (data) =>  {
       if(data){
-        setVisible(true)
-        const url = 'http://localhost:3001/listarEquipo/' + data
+        const url = 'http://localhost:3001/listarDepartamento/' + data
         fetch(url, {mode:'cors'})
-          .then(response => response.json())
-          .then(data => setResult(data));
+          .then((response) => {
+            if(!response.ok) throw new Error(response.status);
+            else return response.json();
+          })
+          .then((data) => {
+            setResult(data);
+            setVisible(true)
+            console.log("DATA STORED");
+          })
+          .catch((error) => {
+            console.log('Valor no encontrado: ' + error);
+            setVisible(false);
+          });
       }
       }
 
-    const handleDetalles = async (data) => {
-      Promise.all([
-        fetch('http://localhost:3001/listarUsuario/' + id), 
-        fetch('http://localhost:3001/listarEquipo'),
-        fetch('http://localhost:3001/listarDepartamento'),
-        fetch('http://localhost:3001/listarMarca'),
-
-      ]).then(([items, contactlist, itemgroup]) => {
-
-      }).catch((err) => {
-          console.log(err);
-      });
-    }
-     const handleError = (err) => {
+      const handleError = (err) => {
+        setError()
         console.error(err)
       } 
+
+      const handleDetalles = async (data) => {
+        Promise.all([
+          fetch('http://localhost:3001/listarUsuarios'), 
+          fetch('http://localhost:3001/listarEquipos'),
+          fetch('http://localhost:3001/listarDepartamentos'),
+          fetch('http://localhost:3001/listarMarcas'),
+  
+        ]).then(([items, contactlist, itemgroup]) => {
+  
+        }).catch((err) => {
+            console.log(err);
+        });
+      }
+
+    
+    
 
     return (
         <>
@@ -52,16 +65,32 @@ const QR = (props) => {
             />
           {console.log(result)}
 
-          {visible &&
-            <div>
-              <CheckIcon />
-              <Button /* {handleDetalles(result.id)} */>Detalles</Button>  
-              <p>{result.serial}</p>
+          {
 
-           {/*  {departamento.filter(word => word.length > 6);} */}
-            </div>
+              <AuthButton
+                visible={visible}
+                result={result}
+                error={error}
+              />
+          
+
+/*           visible
+
+              ? 
+                    <div>
+                          <CheckIcon />
+                          <Button >Detalles</Button>  
+                          <p>{result.serial}</p>
+                    </div>
+
+              : 
+              
+              <RejectIcon />
+
+          
+          
+           } */
           }
-
 
         </>
     );

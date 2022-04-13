@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import  '../components/Check/index.css'
+import  '../components/CheckIcon/index.css'
 import '../styles/Home.module.css'
 import '../components/FormEquipos/styles.css'
 import '../styles/MenuListas.css'

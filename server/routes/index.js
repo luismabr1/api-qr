@@ -80,6 +80,18 @@ router.get('/listarDepartamentos', (req, res) => {
   });  
 });
 
+// GET An Employee
+router.get('/listarDepartamento/:id', (req, res) => {
+  const { id } = req.params; 
+  mysqlConnection.query('SELECT * FROM departamentos WHERE id = ?', [id], (err, rows, fields) => {
+    if (!err) {
+      res.json(rows[0]);
+    } else {
+      console.log("Fetch Error :-S", err)
+    }
+  });
+});
+
 
 // GET An Employee
 router.get('/:id', (req, res) => {
