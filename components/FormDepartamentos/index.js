@@ -1,67 +1,57 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import styles from './departamentos.module.css' 
+import Button from "../Button";
+import ListasUsuarios from "../ListasUsuarios";
 
-const FormEquipos = () =>{
-  const [nombre,setNombre] = useState("");
+const FormDepartamentos = (props) =>{
+  const users = props.users
+  const equipos = props.equipos
+  const departamentos = props.departamentos
+  const cargos=props.cargos
+  
   const [apellido,setApellido] = useState("");
   const [cedula,setCedula] = useState("");
   const [sexo,setSexo] = useState("");
-  const [departamento,setDepartamento] = useState(null);
+  const [departamento,setDepartamento] = useState();
   const [equipo,setEquipo] = useState(null);
   const [cargo,setCargo] = useState(null);
 
 
-  const handleEquipo = () => {
-      
+  const handleDepartamentos = async (props) => {
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({nombre: nombre, apellido: apellido, cedula: cedula, sexo: sexo, departamento: departamento, equipo: equipo, cargo:cargo})
+          body: JSON.stringify({nombre: departamento})
       };
-      fetch('http://localhost:3001/agregar', requestOptions)
+
+     await fetch('http://localhost:3001/departamentos', requestOptions)
           .then(response => response.json())
-          .then(data => setEquipo(data.id));
+          .then(data => setDepartamento(data.id));
   
   }
 
   return(
       <>
-
       <div className="main">
 
-          <h1>Agregar departamentos</h1>
+{/*       <ListasUsuarios 
+          users={users}
+          equipos={equipos}
+          departamentos={departamentos}
+          cargos={cargos}
+        /> */}
+
+          <h1>Agregar Departamentos</h1>
 
 
-          <div className="CreatePost">
+          <div className={styles.CreatePost}>
             <div className="uploadPost">
                 <label>nombre: </label>
-                <input type="text" onChange={(e)=> {
-                    setNombre(e.target.value)
-                }}/>
-                <label>apellido: </label>
-                <input type="text" onChange={(e)=>{
-                    setApellido(e.target.value)
-                }}/>
-                <label>cedula: </label>
-                <input type="number" onChange={(e)=>{
-                    setCedula(e.target.value)
-                }}/>
-                <label>Sexo: </label>
-                <input type="number" onChange={(e)=>{
-                    setSexo(e.target.value)
-                }}/>
-                <label>departamento: </label>
-                <input type="number" onChange={(e)=>{
+                <input className={styles.inputText} type="text" onChange={(e)=> {
                     setDepartamento(e.target.value)
                 }}/>
-                <label>Equipo: </label>
-                <input type="number" onChange={(e)=>{
-                    setEquipo(e.target.value)
-                }}/>
-                <label>Cargo: </label>
-                <input type="number" onChange={(e)=>{
-                    setCargo(e.target.value)
-                }}/>
-                <button onClick={handleEquipo}>Submit Post</button>
+                <Button onClick={handleDepartamentos} name="Submit Departamentos"/>
+                {/* <button onClick={handleDepartamentos}>Submit Departamentos</button> */}
             </div>
           </div>
     </div>
@@ -73,4 +63,4 @@ const FormEquipos = () =>{
 }
   
 
-export default FormEquipos;
+export default FormDepartamentos;

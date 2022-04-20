@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import  '../components/CheckIcon/index.css'
+import '../components/RejectIcon/RejectIcon.module.css'
 import '../styles/Home.module.css'
 import '../components/FormEquipos/styles.css'
 import '../styles/MenuListas.css'

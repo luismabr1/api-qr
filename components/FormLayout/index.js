@@ -1,10 +1,12 @@
+import ListasUsuarios from '../ListasUsuarios'
 import styles, {globalStyles} from './styles'
 
-export default function AppLayout ({children}) {
+export default function FormLayout ({children}) {
   return (
     <>
       <div>
         <main>
+          <ListasUsuarios/>
           {children}
         </main>
       </div>

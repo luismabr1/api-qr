@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Head from 'next/head'
-import AppLayout from '../components/AppLayout'
+import FormLayout from '../components/FormLayout'
 import { colors } from '../styles/theme'
 import FormUsuarios from '../components/FormUsuarios'
 import ListasUsuarios from '../components/ListasUsuarios'
@@ -22,19 +22,15 @@ const Home = (props) => {
       <Head>
         <title>MoDo QR</title>
       </Head>
-      <AppLayout>
-          <ListasUsuarios 
-            users={users}
-            equipos={equipos}
-            departamentos={departamentos}
-            cargos={cargos}
-          />
+      <FormLayout>
           <FormUsuarios
-            departamentos={departamentos}
-            cargos={cargos}
-            equipo={equipos}
+              users={users}
+              departamentos={departamentos}
+              cargos={cargos}
+              equipos={equipos}
+          
           />
-      </AppLayout>
+      </FormLayout>
 
       <style jsx>{`
         img {

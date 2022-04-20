@@ -27,7 +27,8 @@ const QR = (props) => {
             console.log("DATA STORED");
           })
           .catch((error) => {
-            console.log('Valor no encontrado: ' + error);
+            setError('Valor no encontrado: ' + error);
+            console.info(error)
             setVisible(false);
           });
       }

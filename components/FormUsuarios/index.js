@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
+import ListasUsuarios from "../ListasUsuarios";
 
-const FormEquipos = () =>{
+const FormUsuarios = (props) =>{
+    const users = props.users
+    const equipos = props.equipos
+    const departamentos = props.departamentos
+    const cargos=props.cargos
   const [nombre,setNombre] = useState("");
   const [apellido,setApellido] = useState("");
   const [cedula,setCedula] = useState("");
@@ -10,14 +15,14 @@ const FormEquipos = () =>{
   const [cargo,setCargo] = useState(null);
 
 
-  const handleEquipo = () => {
+  const handleUsuario = () => {
       
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({nombre: nombre, apellido: apellido, cedula: cedula, sexo: sexo, departamento: departamento, equipo: equipo, cargo:cargo})
       };
-      fetch('http://localhost:3001/agregar', requestOptions)
+      fetch('http://localhost:3001/usuarios', requestOptions)
           .then(response => response.json())
           .then(data => setEquipo(data.id));
   
@@ -27,7 +32,12 @@ const FormEquipos = () =>{
       <>
 
       <div className="main">
-
+        <ListasUsuarios
+            users={users}
+            departamentos={departamentos}
+            cargos={cargos}
+            equipo={equipos}
+        />
           <h1>Agregar usuarios</h1>
 
 
@@ -50,18 +60,37 @@ const FormEquipos = () =>{
                     setSexo(e.target.value)
                 }}/>
                 <label>departamento: </label>
-                <input type="number" onChange={(e)=>{
-                    setDepartamento(e.target.value)
-                }}/>
+                <select name="select" onChange={e => setDepartamento(e.target.value)} >
+                
+                    {departamentos.map(department => {
+                                return(
+                                    <option key={department.id} value={department.id}>{department.nombre}</option>
+                                )
+                            }   
+                    )}
+
+                </select>
                 <label>Equipo: </label>
-                <input type="number" onChange={(e)=>{
-                    setEquipo(e.target.value)
-                }}/>
+                <select name="select" onChange={e => setDepartamento(e.target.value)} >
+                
+                    {equipos.map(equipo => {
+                                return(
+                                    <option key={equipo.id} value={equipo.id}>{equipo.nombre}</option>
+                                )
+                            }   
+                    )}
+
+                </select>
                 <label>Cargo: </label>
-                <input type="number" onChange={(e)=>{
-                    setCargo(e.target.value)
-                }}/>
-                <button onClick={handleEquipo}>Submit Post</button>
+                <select name="select" onChange={e => setCargo(e.target.value)}>
+                    {cargos.map( cargo => {
+                                return(
+                                    <option key={cargo.id}value={cargo.id}>{cargo.nombre}</option>
+                                )
+                            }   
+                    )}
+                </select>
+                <button onClick={handleUsuario}>Submit Post</button>
             </div>
           </div>
     </div>
@@ -73,4 +102,4 @@ const FormEquipos = () =>{
 }
   
 
-export default FormEquipos;
+export default FormUsuarios;

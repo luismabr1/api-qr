@@ -118,13 +118,115 @@ router.delete('/:id', (req, res) => {
 });
 
 // INSERT An Employee
-router.post('/equipos', (req, res) => {
-  const {nombre, apellido, cedula, sexo, departamento, equipo, cargo} = req.body;
-  console.log(nombre, apellido, cedula, sexo, departamento, equipo, cargo);
+router.post('/usuarios', async (req, res) => {
+  const {nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id} = req.body;
+  console.log(nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id);
   const query = 'INSERT INTO `usuarios`(`nombre`, `apellido`, `cedula`, `sexo`, `departamento_id`, `equipo_id`, `cargo_id`) VALUES (?,?,?,?,?,?,?)'
-  mysqlConnection.query(query, [nombre, apellido, cedula, sexo, departamento, equipo, cargo], (err, rows, fields) => {
+   mysqlConnection.query(query, [nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id],(err, rows, fields) => {
     if(!err) {
-      res.json({status: 'Usuario Saved'});
+      //rescupero el id de la transaccion hecha
+      console.log(rows.insertId);
+      //crear relacion de usuario-cargo
+      console.log(rows.insertId);
+      const usuario_id = rows.insertId
+      const queryCargo = 'INSERT INTO `usuarios_cargos`(`id_usuario`, `id_cargo`) VALUES (?,?)'
+      mysqlConnection.query(queryCargo, [usuario_id, cargo_id],(err, rows, fields) => {
+        if(!err) {        
+          res.json(
+            {
+              status: 'Relacion Usuario-Cargo Saved',
+            });
+        } else {
+          console.log(err);
+        }
+  });
+      //crear relacion de usuario-equipo
+
+      console.log(rows.insertId);
+      const queryEquipo = 'INSERT INTO `usuarios_equipos`(`id_equipo`, `id_usuario`) VALUES (?,?)'
+      mysqlConnection.query(queryEquipo, [usuario_id, equipo_id],(err, rows, fields) => {
+        if(!err) {        
+          res.json(
+            {
+              status: 'Relacion Usuario-Equipo Saved',
+            });
+        } else {
+          console.log(err);
+        }
+  });
+      //crear relacion de usuario-departamento
+      console.log(rows.insertId);
+      const cargo_id = rows.insertId
+      const query = 'INSERT INTO `usuarios_departamentos`(`id_departamento`, `id_usuario`) VALUES (?,?)'
+      mysqlConnection.query(query, [departamento_id, usuario_id],(err, rows, fields) => {
+        if(!err) {        
+          res.json(
+            {
+              status: 'Relacion Usuario-Departamento Saved',
+            });
+        } else {
+          console.log(err);
+        }
+  });
+
+      res.json(
+        {
+          status: 'Usuario Saved',
+        });
+    } else {
+      console.log(err);
+    }
+  });
+
+});
+
+// INSERT An Employee
+router.post('/cargos', async (req, res) => {
+  const {nombre, departamento_id} = req.body;
+  console.log(nombre, departamento_id);
+  const query = 'INSERT INTO `cargos`(`nombre`, `departamento_id`) VALUES (?,?)'
+   mysqlConnection.query(query, [nombre, departamento_id],(err, rows, fields) => {
+
+    if(!err) {
+      //agregar relacion
+      console.log(rows.insertId);
+      const cargo_id = rows.insertId
+      const query = 'INSERT INTO `departamentos_cargos`(`id_departamento`, `id_cargos`) VALUES (?,?)'
+      mysqlConnection.query(query, [departamento_id, cargo_id],(err, rows, fields) => {
+        if(!err) {        
+          res.json(
+            {
+              status: 'Relacion Departamento-Cargo Saved',
+            });
+        } else {
+          console.log(err);
+        }
+  });
+
+      res.json(
+        {
+          status: 'Cargo Saved',
+        });
+    } else {
+      console.log(err);
+    }
+  });
+
+});
+
+// INSERT An Employee
+router.post('/departamentos', async (req, res) => {
+  const {nombre} = req.body;
+  console.log(nombre);
+  const query = 'INSERT INTO `departamentos`(`nombre`) VALUES (?)'
+   mysqlConnection.query(query, [nombre],(err, rows, fields) => {
+    if(!err) {
+      //rescupero el id de la transaccion hecha
+      console.log(rows.insertId);
+      res.json(
+        {
+          status: 'Departamento Saved',
+        });
     } else {
       console.log(err);
     }

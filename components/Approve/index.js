@@ -16,12 +16,18 @@ const AuthButton = (props) => {
           <div>
               <CheckIcon />
               <Button >Detalles</Button>  
-              <p>{result.nombre}</p>
+              <p>{result.serial}</p>
           </div>
         )
         break;
       case false:
-        return <RejectIcon />
+        return (
+            <div>
+                <RejectIcon />
+                <p>{error}</p>
+            </div>
+               
+        )
         break;
       default:
         return null

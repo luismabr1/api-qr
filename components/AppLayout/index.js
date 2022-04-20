@@ -4,7 +4,7 @@ export default function AppLayout ({children}) {
   return (
     <>
       <div>
-        <main>
+        <main>   
           {children}
         </main>
       </div>
