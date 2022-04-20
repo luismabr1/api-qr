@@ -1,12 +1,18 @@
 import ListasUsuarios from '../ListasUsuarios'
 import styles, {globalStyles} from './styles'
 
-export default function FormLayout ({children}) {
+export default function FormLayout ({children, users, equipos, departamentos, cargos}) {
+  console.table(departamentos)
   return (
     <>
       <div>
         <main>
-          <ListasUsuarios/>
+          <ListasUsuarios
+                users={users}
+                equipos={equipos}
+                departamentos={departamentos}
+                cargos={cargos}
+          />
           {children}
         </main>
       </div>

@@ -9,12 +9,13 @@ import ListasUsuarios from '../components/ListasUsuarios'
 const Home = (props) => {
   /* manten el props fuera de llaves */
    console.log(typeof props)
-  let prueba = props
-   console.table(prueba.equipos)
-   const users=prueba.usuarios
-   const equipos=prueba.equipos
-   const departamentos=prueba.departamentos
-   const cargos=prueba.cargos 
+   console.log(props.departamentos)
+
+   console.table(props.departamentos)
+   const users=props.usuarios
+   const equipos=props.equipos
+   const departamentos=props.departamentos
+   const cargos=props.cargos 
 
 
   return (
@@ -22,7 +23,12 @@ const Home = (props) => {
       <Head>
         <title>MoDo QR</title>
       </Head>
-      <FormLayout>
+      <FormLayout
+          users={users}
+          equipos={equipos}
+          departamentos={departamentos}
+          cargos={cargos}
+      >
           <FormDepartamentos
             users={users}
             departamentos={departamentos}

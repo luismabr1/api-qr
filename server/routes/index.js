@@ -186,31 +186,31 @@ router.post('/cargos', async (req, res) => {
   console.log(nombre, departamento_id);
   const query = 'INSERT INTO `cargos`(`nombre`, `departamento_id`) VALUES (?,?)'
    mysqlConnection.query(query, [nombre, departamento_id],(err, rows, fields) => {
-
     if(!err) {
-      //agregar relacion
       console.log(rows.insertId);
       const cargo_id = rows.insertId
-      const query = 'INSERT INTO `departamentos_cargos`(`id_departamento`, `id_cargos`) VALUES (?,?)'
-      mysqlConnection.query(query, [departamento_id, cargo_id],(err, rows, fields) => {
+      //agregar relacion
+      const queryDepartamentoCargos = 'INSERT INTO `departamentos_cargos`(`id_departamento`, `id_cargos`) VALUES (?,?)'
+      mysqlConnection.query(queryDepartamentoCargos, [departamento_id, cargo_id],(err, rows, fields) => {
         if(!err) {        
           res.json(
             {
-              status: 'Relacion Departamento-Cargo Saved',
+              status: 'Relacion Departamento-Cargo y Cargo Saved',
             });
         } else {
           console.log(err);
         }
   });
-
-      res.json(
+/*       res.json(
         {
           status: 'Cargo Saved',
-        });
+        }); */
+
     } else {
       console.log(err);
     }
   });
+        
 
 });
 

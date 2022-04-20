@@ -1,20 +1,18 @@
 import React, {useEffect, useState} from 'react'
 import Head from 'next/head'
-import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
 import FormCargos from '../components/FormCargos'
-import ListasUsuarios from '../components/ListasUsuarios'
+import FormLayout from '../components/FormLayout'
 
 
 const Home = (props) => {
   /* manten el props fuera de llaves */
    console.log(typeof props)
-  let prueba = props
-   console.table(prueba.equipos)
-   const users=prueba.usuarios
-   const equipos=prueba.equipos
-   const departamentos=prueba.departamentos
-   const cargos=prueba.cargos 
+
+   const users=props.usuarios
+   const equipos=props.equipos
+   const departamentos=props.departamentos
+   const cargos=props.cargos 
 
 
   return (
@@ -22,19 +20,18 @@ const Home = (props) => {
       <Head>
         <title>MoDo QR</title>
       </Head>
-      <AppLayout>
-          <ListasUsuarios 
-            users={users}
-            equipos={equipos}
-            departamentos={departamentos}
-            cargos={cargos}
-          />
+      <FormLayout
+          users={users}
+          equipos={equipos}
+          departamentos={departamentos}
+          cargos={cargos}
+      >
           <FormCargos
             departamentos={departamentos}
             cargos={cargos}
             equipo={equipos}
           />
-      </AppLayout>
+      </FormLayout>
 
       <style jsx>{`
         img {

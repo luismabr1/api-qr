@@ -1,6 +1,6 @@
 /* FORMS */
 .main {
-    min-height: 90vh;
+    min-height: 30vh;
     padding: 10px 0;
     flex: 1;
     display: flex;
@@ -16,6 +16,7 @@
     align-items: center;
     height: auto;
     width: auto;
+    padding: 20px;
     border: 2px solid coral;
   }
   
@@ -38,7 +39,6 @@
   }
 
   .mini-list{
-    max-height: 125px;
     width: 100%;
     height: auto;
     padding: 1rem 0;
@@ -51,3 +51,44 @@
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(1, .1, .1, .1);
   }
+
+/*******************************FORMULARIO **********************************/
+
+  .inputText {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 12px 0;
+    box-sizing: border-box;
+}
+
+.caja {
+  margin:20px auto 40px auto;	
+  border:1px solid #d9d9d9;
+  height:40px;
+  overflow: hidden;
+  width: 230px;
+  position:relative;
+}
+select {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  height: 40px;
+  padding: 5px;
+  width: 250px;
+}
+select:focus{ outline: none;}
+
+.caja::after{
+ content:"\025be";
+ display:table-cell;
+ padding-top:7px;
+ text-align:center;
+ width:30px;
+ height:40px;
+ background-color:#d9d9d9;
+ position:absolute;
+ top:0;
+ right:0px;	
+ pointer-events: none;
+}

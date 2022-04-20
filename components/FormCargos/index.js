@@ -1,26 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import SubmitButton from 'reactive-button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleNotch, faThumbsUp, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 const FormCargos = (props) =>{
+const listaDepartamentos = props.departamentos
   const [nombre,setNombre] = useState("");
-  const [apellido,setApellido] = useState("");
-  const [cedula,setCedula] = useState("");
-  const [sexo,setSexo] = useState("");
-  const [departamento,setDepartamento] = useState(props.departamentos);
-  const [equipo,setEquipo] = useState(null);
-  const [cargo,setCargo] = useState(null);
-
+  const [cargo, setCargo] = useState("")
+  const [departamento,setDepartamento] = useState([]);
+  const [state, setState] = useState('idle');
 
   const handleCargos = (props) => {
-      
+    setState('loading');
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({nombre: nombre, departamento: departamento})
+          body: JSON.stringify({nombre: nombre, departamento_id: departamento})
       };
       fetch('http://localhost:3001/cargos', requestOptions)
           .then(response => response.json())
-          .then(data => setEquipo(data.id));
-  
+          .then(data => setCargo(data.id));
+          setTimeout(() => {
+            setState('success');
+          }, 2000);
   }
 
   return(
@@ -29,27 +31,63 @@ const FormCargos = (props) =>{
       <div className="main">
 
           <h1>Agregar cargos</h1>
-
-
           <div className="CreatePost">
             <div className="uploadPost">
                 <label>nombre: </label>
-                <input type="text" onChange={(e)=> {
+                <input className="inputText" type="text" onChange={(e)=> {
                     setNombre(e.target.value)
                 }}/>
 
                 <label>departamento: </label>
-                <select name="select" onChange={e => setDepartamento(e.target.value)} >
-                    {departamento.map(department => {
-                                return(
-                                    <option key={department.id} value={department.id}>{department.nombre}</option>
-                                )
-                            }   
-                    )}
+                <div className="caja">
+                    <select name="select" onChange={e => setDepartamento(e.target.value)} >
+                        {listaDepartamentos.map(department => {
+                                    return(
+                                        <option key={department.id} value={department.id}>{department.nombre}</option>
+                                    )
+                                }   
+                        )}
 
-                </select>
+                    </select>
+                </div>
 
-                <button onClick={handleCargos}>Submit Post</button>
+                <SubmitButton
+          buttonState={state}
+          onClick={handleCargos}
+          color={'dark'}
+          idleText={'Cargar'}
+          loadingText={
+            <>
+              <FontAwesomeIcon icon={faCircleNotch} spin /> Cargando...
+            </>
+          }
+          successText={
+            <>
+              <FontAwesomeIcon icon={faThumbsUp} /> Cargado!
+            </>
+          }
+          errorText={
+            <>
+              <FontAwesomeIcon icon={faCircleExclamation} /> Error
+            </>
+          }
+          type={'button'}
+          className={'class1 class2'}
+          style={{
+            borderRadius: '5px',
+          }}
+          outline={false}
+          shadow={false}
+          rounded={false}
+          size={'normal'}
+          block={false}
+          messageDuration={2000}
+          disabled={false}
+          buttonRef={null}
+          width={null}
+          height={null}
+          animation={true}
+        />
             </div>
           </div>
     </div>
