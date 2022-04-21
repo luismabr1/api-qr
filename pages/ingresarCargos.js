@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import Head from 'next/head'
 import { colors } from '../styles/theme'
 import FormCargos from '../components/FormCargos'
 import FormLayout from '../components/FormLayout'
@@ -7,7 +6,6 @@ import FormLayout from '../components/FormLayout'
 
 const Home = (props) => {
   /* manten el props fuera de llaves */
-   console.log(typeof props)
 
    const users=props.usuarios
    const equipos=props.equipos
@@ -17,9 +15,6 @@ const Home = (props) => {
 
   return (
     <>
-      <Head>
-        <title>MoDo QR</title>
-      </Head>
       <FormLayout
           users={users}
           equipos={equipos}

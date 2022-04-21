@@ -1,14 +1,14 @@
 import Link from 'next/link'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 
 const ListasUsuarios = (props) => {
-    const [lists, setLists] = useState(false)
+    const [lists, setLists] = useState(props.equipos)
     const [serial, setSerial] = useState([])
     const [show, setShow]= useState(false)
+    console.log(props)
     const users = props.users
     const equipos = props.equipos
-    console.log(props.equipos)
     const departamentos = props.departamentos
     const cargos = props.cargos
 
@@ -31,10 +31,10 @@ const ListasUsuarios = (props) => {
     return (
         <>
             <nav>
-                <label onClick={handleUsers}><Link href="/ingresarUsuarios">Usuarios</Link></label>
-                <label onClick={handleEquipos}><Link href="/ingresarEquipos">Equipos</Link></label>
-                <label onClick={handleDepartamentos}><Link href="/ingresarDepartamentos">Departamentos</Link>s</label>
-                <label onClick={handleCargos}><Link href="/ingresarCargos">Cargos</Link></label>
+                <label onClick={handleUsers}><Link href="#">Usuarios</Link></label>
+                <label onClick={handleEquipos}><Link href="#">Equipos</Link></label>
+                <label onClick={handleDepartamentos}><Link href="#">Departamentos</Link></label>
+                <label onClick={handleCargos}><Link href="#">Cargos</Link></label>
             </nav>
             <div className="mini-list">
                 {show &&

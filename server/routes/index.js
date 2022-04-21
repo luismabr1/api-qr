@@ -125,54 +125,32 @@ router.post('/usuarios', async (req, res) => {
    mysqlConnection.query(query, [nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id],(err, rows, fields) => {
     if(!err) {
       //rescupero el id de la transaccion hecha
-      console.log(rows.insertId);
       //crear relacion de usuario-cargo
       console.log(rows.insertId);
       const usuario_id = rows.insertId
       const queryCargo = 'INSERT INTO `usuarios_cargos`(`id_usuario`, `id_cargo`) VALUES (?,?)'
       mysqlConnection.query(queryCargo, [usuario_id, cargo_id],(err, rows, fields) => {
-        if(!err) {        
-          res.json(
-            {
-              status: 'Relacion Usuario-Cargo Saved',
-            });
-        } else {
-          console.log(err);
-        }
+        if (err) throw err;
   });
       //crear relacion de usuario-equipo
-
       console.log(rows.insertId);
       const queryEquipo = 'INSERT INTO `usuarios_equipos`(`id_equipo`, `id_usuario`) VALUES (?,?)'
       mysqlConnection.query(queryEquipo, [usuario_id, equipo_id],(err, rows, fields) => {
-        if(!err) {        
-          res.json(
-            {
-              status: 'Relacion Usuario-Equipo Saved',
-            });
-        } else {
-          console.log(err);
-        }
+        if (err) throw err;
   });
       //crear relacion de usuario-departamento
-      console.log(rows.insertId);
-      const cargo_id = rows.insertId
       const query = 'INSERT INTO `usuarios_departamentos`(`id_departamento`, `id_usuario`) VALUES (?,?)'
       mysqlConnection.query(query, [departamento_id, usuario_id],(err, rows, fields) => {
         if(!err) {        
           res.json(
             {
-              status: 'Relacion Usuario-Departamento Saved',
+              status: 'Usuario y Relaciones Saved',
             });
         } else {
           console.log(err);
         }
   });
 
-      res.json(
-        {
-          status: 'Usuario Saved',
-        });
     } else {
       console.log(err);
     }

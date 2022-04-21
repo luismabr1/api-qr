@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import ListasUsuarios from "../ListasUsuarios";
+import SubmitButton from 'reactive-button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleNotch, faThumbsUp, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 const FormUsuarios = (props) =>{
-    const users = props.users
     const equipos = props.equipos
     const departamentos = props.departamentos
     const cargos=props.cargos
@@ -13,10 +14,11 @@ const FormUsuarios = (props) =>{
   const [departamento,setDepartamento] = useState(null);
   const [equipo,setEquipo] = useState(null);
   const [cargo,setCargo] = useState(null);
+  const [state, setState] = useState('idle');
 
 
   const handleUsuario = () => {
-      
+    setState('loading');
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -25,72 +27,110 @@ const FormUsuarios = (props) =>{
       fetch('http://localhost:3001/usuarios', requestOptions)
           .then(response => response.json())
           .then(data => setEquipo(data.id));
-  
+          
+          setTimeout(() => {
+            setState('success');
+          }, 2000);
   }
 
   return(
       <>
 
       <div className="main">
-        <ListasUsuarios
-            users={users}
-            departamentos={departamentos}
-            cargos={cargos}
-            equipo={equipos}
-        />
           <h1>Agregar usuarios</h1>
-
-
           <div className="CreatePost">
             <div className="uploadPost">
                 <label>nombre: </label>
-                <input type="text" onChange={(e)=> {
+                <input className="inputText" type="text" onChange={(e)=> {
                     setNombre(e.target.value)
                 }}/>
                 <label>apellido: </label>
-                <input type="text" onChange={(e)=>{
+                <input className="inputText" type="text" onChange={(e)=>{
                     setApellido(e.target.value)
                 }}/>
                 <label>cedula: </label>
-                <input type="number" onChange={(e)=>{
+                <input className="inputText" type="number" onChange={(e)=>{
                     setCedula(e.target.value)
                 }}/>
                 <label>Sexo: </label>
-                <input type="number" onChange={(e)=>{
+                <input className="inputText" type="number" onChange={(e)=>{
                     setSexo(e.target.value)
                 }}/>
                 <label>departamento: </label>
-                <select name="select" onChange={e => setDepartamento(e.target.value)} >
-                
-                    {departamentos.map(department => {
-                                return(
-                                    <option key={department.id} value={department.id}>{department.nombre}</option>
-                                )
-                            }   
-                    )}
+                <div className="caja">
+                    <select name="select" onChange={e => setDepartamento(e.target.value)} >
+                    
+                        {departamentos.map(department => {
+                                    return(
+                                        <option key={department.id} value={department.id}>{department.nombre}</option>
+                                    )
+                                }   
+                        )}
 
-                </select>
+                    </select>
+                </div>
                 <label>Equipo: </label>
-                <select name="select" onChange={e => setDepartamento(e.target.value)} >
-                
-                    {equipos.map(equipo => {
-                                return(
-                                    <option key={equipo.id} value={equipo.id}>{equipo.nombre}</option>
-                                )
-                            }   
-                    )}
+                <div className="caja">
+                    <select name="select" onChange={e => setDepartamento(e.target.value)} >
+                    
+                        {equipos.map(equipo => {
+                                    return(
+                                        <option key={equipo.id} value={equipo.id}>{equipo.nombre}</option>
+                                    )
+                                }   
+                        )}
 
-                </select>
+                    </select>
+                </div>
                 <label>Cargo: </label>
-                <select name="select" onChange={e => setCargo(e.target.value)}>
-                    {cargos.map( cargo => {
-                                return(
-                                    <option key={cargo.id}value={cargo.id}>{cargo.nombre}</option>
-                                )
-                            }   
-                    )}
-                </select>
-                <button onClick={handleUsuario}>Submit Post</button>
+                <div className="caja">
+                    <select name="select" onChange={e => setCargo(e.target.value)}>
+                        {cargos.map( cargo => {
+                                    return(
+                                        <option key={cargo.id}value={cargo.id}>{cargo.nombre}</option>
+                                    )
+                                }   
+                        )}
+                    </select>
+                </div>
+
+                <SubmitButton
+                    buttonState={state}
+                    onClick={handleUsuario}
+                    color={'dark'}
+                    idleText={'Cargar'}
+                    loadingText={
+                        <>
+                        <FontAwesomeIcon icon={faCircleNotch} spin /> Cargando...
+                        </>
+                    }
+                    successText={
+                        <>
+                        <FontAwesomeIcon icon={faThumbsUp} /> Cargado!
+                        </>
+                    }
+                    errorText={
+                        <>
+                        <FontAwesomeIcon icon={faCircleExclamation} /> Error
+                        </>
+                    }
+                    type={'button'}
+                    className={'class1 class2'}
+                    style={{
+                        borderRadius: '5px',
+                    }}
+                    outline={false}
+                    shadow={false}
+                    rounded={false}
+                    size={'large'}
+                    block={false}
+                    messageDuration={2000}
+                    disabled={false}
+                    buttonRef={null}
+                    width={null}
+                    height={null}
+                    animation={true}
+                    />
             </div>
           </div>
     </div>

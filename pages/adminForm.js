@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import Head from 'next/head'
-import FormLayout from '../components/FormLayout'
 import { colors } from '../styles/theme'
-import FormUsuarios from '../components/FormUsuarios'
+import FormLayout from '../components/FormLayout'
+import SelectForm from '../components/SelectForm'
 
 
 const Home = (props) => {
   /* manten el props fuera de llaves */
+
    const users=props.usuarios
    const equipos=props.equipos
    const departamentos=props.departamentos
@@ -16,16 +16,18 @@ const Home = (props) => {
   return (
     <>
       <FormLayout
-              users={users}
-              equipos={equipos}
-              departamentos={departamentos}
-              cargos={cargos}
+          users={users}
+          equipos={equipos}
+          departamentos={departamentos}
+          cargos={cargos}
       >
-          <FormUsuarios
-              departamentos={departamentos}
-              cargos={cargos}
-              equipos={equipos}     
-          />
+
+        <SelectForm           
+          users={users}
+          equipos={equipos}
+          departamentos={departamentos}
+          cargos={cargos} 
+        />
       </FormLayout>
 
       <style jsx>{`
