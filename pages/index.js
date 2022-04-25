@@ -3,6 +3,7 @@ import Head from 'next/head'
 import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
 import QR from '../components/QReader'
+import Button from '../components/Button'
 
 
 const Home = ( props ) => {
@@ -24,20 +25,14 @@ const Home = ( props ) => {
           <h2>Scaner<br />for security 👩‍💻👨‍💻</h2>
 
           <div>
-           {/*  <ul>
-              {posts.map(post =>(
-                  <li key={post.id}> {post.nombre} </li>
-              ))}         
-            </ul> */}
             <QR
               usuarios={usuarios}
               cargos={cargos}
               departamentos={departamentos}
-            
             />
             
           </div>
-          
+
         </section>
       </AppLayout>
 
@@ -76,7 +71,8 @@ export async function getStaticProps() {
     fetch('http://localhost:3001/listarUsuarios'), 
     fetch('http://localhost:3001/listarEquipos'),
     fetch('http://localhost:3001/listarDepartamentos'),
-    fetch('http://localhost:3001/listarCargos'),
+    fetch('http://localhost:3001/listarCargos')
+
   ]);
   const [usuarios, equipos, departamentos, cargos] = await Promise.all([
     usuariosRes.json(), 
@@ -84,5 +80,5 @@ export async function getStaticProps() {
     departamentosRes.json(),
     cargosRes.json()
   ]);
-  return { props: { usuarios, equipos, departamentos, cargos } };
+  return { props: { usuarios, equipos, departamentos, cargos} };
 }

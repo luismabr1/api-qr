@@ -4,17 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch, faThumbsUp, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 const FormEquipos = (props) =>{
-    const listaDepartamentos = props.departamentos
-    const listaCargos = props.cargos
-    const listaEquipos = props.equipos
+    console.log(props)
+    const listaModelos = props.modelos
+    const listaMarcas = props.marcas
+    const listaUsuarios = props.usuarios
+    const listaTipos = props.tipos
 
-  const [nombre,setNombre] = useState("");
-  const [apellido,setApellido] = useState("");
-  const [cedula,setCedula] = useState("");
-  const [sexo,setSexo] = useState("");
-  const [departamento,setDepartamento] = useState(props.departamentos);
-  const [equipo,setEquipo] = useState(null);
-  const [cargo,setCargo] = useState(props.cargos);
+  const [tipo,setTipo] = useState([]);
+  const [usuario,setUsuario] = useState([]);
+  const [modelo,setModelo] = useState([]);
+  const [marca,setMarca] = useState([]);
+  const [serial,setSerial] = useState([]);
   const [state, setState] = useState('idle');
 
 
@@ -23,9 +23,9 @@ const FormEquipos = (props) =>{
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({nombre: nombre, apellido: apellido, cedula: cedula, sexo: sexo, departamento: departamento, equipo: equipo, cargo:cargo})
+          body: JSON.stringify({ usuario_id:usuario, marca_id:marca, modelo_id:modelo, serial:serial, tipo_id:tipo})
       };
-      fetch('http://localhost:3001/agregar', requestOptions)
+      fetch('http://localhost:3001/equipos', requestOptions)
           .then(response => response.json())
           .then(data => setEquipo(data.id));
 
@@ -42,58 +42,63 @@ const FormEquipos = (props) =>{
           <h1>Agregar Equipos</h1>
           <div className="CreatePost">
             <div className="uploadPost">
-                <label>nombre: </label>
-                <input className="inputText" type="text" onChange={(e)=> {
-                    setNombre(e.target.value)
-                }}/>
-                <label>apellido: </label>
+                <label>Usuario: </label>
+                <div className="caja">
+                    <select name="select" onChange={e => setUsuario(e.target.value)}>
+                        <option key={0} defaultValue >--------Inserte nombre----------</option>
+                        {listaUsuarios.map( user => {
+                            console.log(user)
+                                    return(
+                                        <option key={user.id}value={user.id}>{user.nombre}</option>
+                                    )
+                                }   
+                        )}
+                    </select>
+                </div>
+
+                <label>Marca: </label>
+                <div className="caja">
+                    <select name="select" onChange={e => setMarca(e.target.value)}>
+                        {listaMarcas.map( marca => {
+                            console.log(marca)
+                                    return(
+                                        <option key={marca.id}value={marca.id}>{marca.nombre}</option>
+                                    )
+                                }   
+                        )}
+                    </select>
+                </div>
+                <label>Modelo: </label>
+                <div className="caja">
+                    <select name="select" onChange={e => setModelo(e.target.value)} >  
+                        {listaModelos.map(modelo => {
+                            console.log(modelo)
+                                    return(
+                                        <option key={modelo.id} value={modelo.id}>{modelo.nombre}</option>
+                                    )
+                                }   
+                        )}
+
+                    </select>
+                </div>
+                <label>Serial </label>
                 <input className="inputText" type="text" onChange={(e)=>{
-                    setApellido(e.target.value)
+                    setSerial(e.target.value)
                 }}/>
-                <label>cedula: </label>
-                <input className="inputText" type="number" onChange={(e)=>{
-                    setCedula(e.target.value)
-                }}/>
-                <label>Sexo: </label>
-                <input className="inputText" type="number" onChange={(e)=>{
-                    setSexo(e.target.value)
-                }}/>
-                <label>departamento: </label>
+                <label>Tipo: </label>
                 <div className="caja">
-                    <select name="select" onChange={e => setDepartamento(e.target.value)} >  
-                        {listaDepartamentos.map(department => {
+                    <select name="select" onChange={e => setTipo(e.target.value)}>
+                        {listaTipos.map( tipo => {
+                            console.log(tipo)
                                     return(
-                                        <option key={department.id} value={department.id}>{department.nombre}</option>
-                                    )
-                                }   
-                        )}
-
-                    </select>
-                </div>
-                <label>Equipo: </label>
-                <div className="caja">
-                        <select name="select" onChange={e => setEquipo(e.target.value)} >
-                        
-                            {listaEquipos.map(equipo => {
-                                        return(
-                                            <option key={equipo.id} value={equipo.id}>{equipo.serial}</option>
-                                        )
-                                    }   
-                            )}
-
-                        </select>
-                </div>
-                <label>Cargo: </label>
-                <div className="caja">
-                    <select name="select" onChange={e => setCargo(e.target.value)}>
-                        {listaCargos.map( cargo => {
-                                    return(
-                                        <option key={cargo.id}value={cargo.id}>{cargo.nombre}</option>
+                                        <option key={tipo.id}value={tipo.id}>{tipo.nombre}</option>
                                     )
                                 }   
                         )}
                     </select>
                 </div>
+
+                
                 <SubmitButton
                     buttonState={state}
                     onClick={handleEquipo}

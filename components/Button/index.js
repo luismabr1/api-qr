@@ -5,73 +5,42 @@ const Button = ({ children, name, onClick }) =>{
 
   return (
     <>
-      <button onClick={onClick}>
-            <div class="svg-wrapper-1">
-              <div class="svg-wrapper">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                  <path fill="none" d="M0 0h24v24H0z"></path>
-                  <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
-                </svg>
-              </div>
-            </div>
-          <span>{name}</span>
+      <button className="cssbuttons-io-button">
+       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg>
+        <span>Ver mas</span>
         </button>
       {/* <button onClick={onClick}>
         {children}
       </button> */}
       <style jsx>{`
 /* From uiverse.io by @adamgiebl */
-button {
- font-family: inherit;
- font-size: 20px;
- background: royalblue;
- color: white;
- padding: 0.7em 1em;
- padding-left: 0.9em;
+/* From uiverse.io by @adamgiebl */
+.cssbuttons-io-button {
  display: flex;
  align-items: center;
+ font-family: inherit;
+ font-weight: 500;
+ font-size: 16px;
+ padding: 0.7em 1.4em 0.7em 1.1em;
+ color: white;
+ background: #ad5389;
+ background: linear-gradient(0deg, rgba(20,167,62,1) 0%, rgba(102,247,113,1) 100%);
  border: none;
- border-radius: 16px;
- overflow: hidden;
- transition: all 0.2s;
+ box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
+ letter-spacing: 0.05em;
+ border-radius: 20em;
 }
 
-button span {
- display: block;
- margin-left: 0.3em;
- transition: all 0.3s ease-in-out;
+.cssbuttons-io-button svg {
+ margin-right: 6px;
 }
 
-button svg {
- display: block;
- transform-origin: center center;
- transition: transform 0.3s ease-in-out;
+.cssbuttons-io-button:hover {
+ box-shadow: 0 0.5em 1.5em -0.5em #14a73e98;
 }
 
-button:hover .svg-wrapper {
- animation: fly-1 0.6s ease-in-out infinite alternate;
-}
-
-button:hover svg {
- transform: translateX(1.2em) rotate(45deg) scale(1.1);
-}
-
-button:hover span {
- transform: translateX(5em);
-}
-
-button:active {
- transform: scale(0.95);
-}
-
-@keyframes fly-1 {
- from {
-  transform: translateY(0.1em);
- }
-
- to {
-  transform: translateY(-0.1em);
- }
+.cssbuttons-io-button:active {
+ box-shadow: 0 0.3em 1em -0.5em #14a73e98;
 }
       `}</style>
     </>

@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import CheckIcon from "../CheckIcon";
 import Button from "../Button";
 import RejectIcon from "../RejectIcon";
+import Detalles from "../Detalles";
+
 
 const AuthButton = (props) => {
 
@@ -13,11 +15,7 @@ const AuthButton = (props) => {
     switch (visible){
       case true:
         return (
-          <div>
-              <CheckIcon />
-              <Button >Detalles</Button>  
-              <p>{result.serial}</p>
-          </div>
+          <Detalles result={result} />
         )
         break;
       case false:

@@ -80,11 +80,52 @@ router.get('/listarDepartamentos', (req, res) => {
   });  
 });
 
+router.get('/listarMarcas', (req, res) => {
+  mysqlConnection.query('SELECT * FROM marcas', (err, rows, fields) => {
+    if(!err) {
+      res.json(rows);
+    } else {
+      console.log(err);
+    }
+  });  
+});
+
+router.get('/listarTipos', (req, res) => {
+  mysqlConnection.query('SELECT * FROM tipos', (err, rows, fields) => {
+    if(!err) {
+      res.json(rows);
+    } else {
+      console.log(err);
+    }
+  });  
+});
+
+router.get('/listarModelos', (req, res) => {
+  mysqlConnection.query('SELECT * FROM modelos', (err, rows, fields) => {
+    if(!err) {
+      res.json(rows);
+    } else {
+      console.log(err);
+    }
+  });  
+});
+
+router.get('/listarRegistros', (req, res) => {
+  mysqlConnection.query('SELECT * FROM registros', (err, rows, fields) => {
+    if(!err) {
+      res.json(rows);
+    } else {
+      console.log(err);
+    }
+  });  
+});
+
 // GET An Employee
 router.get('/listarDepartamento/:id', (req, res) => {
   const { id } = req.params; 
   mysqlConnection.query('SELECT * FROM departamentos WHERE id = ?', [id], (err, rows, fields) => {
     if (!err) {
+      
       res.json(rows[0]);
     } else {
       console.log("Fetch Error :-S", err)
@@ -121,8 +162,8 @@ router.delete('/:id', (req, res) => {
 router.post('/usuarios', async (req, res) => {
   const {nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id} = req.body;
   console.log(nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id);
-  const query = 'INSERT INTO `usuarios`(`nombre`, `apellido`, `cedula`, `sexo`, `departamento_id`, `equipo_id`, `cargo_id`) VALUES (?,?,?,?,?,?,?)'
-   mysqlConnection.query(query, [nombre, apellido, cedula, sexo, departamento_id, equipo_id, cargo_id],(err, rows, fields) => {
+  const query = 'INSERT INTO `usuarios`(`nombre`, `apellido`, `cedula`, `sexo`, `departamento_id`, `cargo_id`) VALUES (?,?,?,?,?,?,?)'
+   mysqlConnection.query(query, [nombre, apellido, cedula, sexo, departamento_id, cargo_id],(err, rows, fields) => {
     if(!err) {
       //rescupero el id de la transaccion hecha
       //crear relacion de usuario-cargo
@@ -132,12 +173,12 @@ router.post('/usuarios', async (req, res) => {
       mysqlConnection.query(queryCargo, [usuario_id, cargo_id],(err, rows, fields) => {
         if (err) throw err;
   });
-      //crear relacion de usuario-equipo
+ /*      //crear relacion de usuario-equipo
       console.log(rows.insertId);
       const queryEquipo = 'INSERT INTO `usuarios_equipos`(`id_equipo`, `id_usuario`) VALUES (?,?)'
       mysqlConnection.query(queryEquipo, [usuario_id, equipo_id],(err, rows, fields) => {
         if (err) throw err;
-  });
+  }); */
       //crear relacion de usuario-departamento
       const query = 'INSERT INTO `usuarios_departamentos`(`id_departamento`, `id_usuario`) VALUES (?,?)'
       mysqlConnection.query(query, [departamento_id, usuario_id],(err, rows, fields) => {
@@ -210,6 +251,140 @@ router.post('/departamentos', async (req, res) => {
     }
   });
 
+});
+
+// INSERT An Employee
+router.post('/tipos', async (req, res) => {
+  const {nombre} = req.body;
+  console.log(nombre);
+  const query = 'INSERT INTO `tipos`(`nombre`) VALUES (?)'
+   mysqlConnection.query(query, [nombre],(err, rows, fields) => {
+    if(!err) {
+      //rescupero el id de la transaccion hecha
+      console.log(rows.insertId);
+      res.json(
+        {
+          status: 'Tipo Saved',
+        });
+    } else {
+      console.log(err);
+    }
+  });
+
+});
+
+// INSERT An Employee
+router.post('/modelos', async (req, res) => {
+  const {usuario_id, marca_id, modelo_id, serial} = req.body;
+  console.log(nombre);
+  const query = 'INSERT INTO `modelos`(`nombre`, `marca_id`) VALUES (?,?)'
+   mysqlConnection.query(query, [nombre, marca_id],(err, rows, fields) => {
+    if(!err) {
+      //rescupero el id de la transaccion hecha
+      console.log(rows.insertId);
+      const modelo_id = rows.insertId
+      //agregar relacion
+      const queryEquiposModelos = 'INSERT INTO `marcas_modelos`(`id_marca`, `id_modelo`) VALUES (?,?)'
+      mysqlConnection.query(queryEquiposModelos, [marca_id, modelo_id],(err, rows, fields) => {
+        if (err) throw err;
+  });
+/*       res.json(
+        {
+          status: 'Tipo Saved',
+        }); */
+    } else {
+      console.log(err);
+    }
+  });
+
+});
+
+// INSERT An Employee
+router.post('/equipos', async (req, res) => {
+  const {usuario_id, marca_id, modelo_id, serial, tipo_id} = req.body;
+  console.log(usuario_id);
+  const query = 'INSERT INTO `equipos`(`usuario_id`, `marca_id`, `modelo_id`, `serial`, `tipo_id`) VALUES (?,?,?,?,?)'
+  console.log(query);
+   mysqlConnection.query(query, [usuario_id, marca_id, modelo_id, serial, tipo_id],(err, rows, fields) => {
+    if(!err) {
+      //rescupero el id de la transaccion hecha
+      console.log(rows.insertId);
+      const equipo_id = rows.insertId
+      //agregar relacion
+       //agregar relacion
+       const queryEquiposModelos = 'INSERT INTO `equipos_modelos`(`modelo_id`, `equipo_id`) VALUES (?,?)'
+       mysqlConnection.query(queryEquiposModelos, [modelo_id, equipo_id],(err, rows, fields) => {
+         if (err) throw err;});
+ 
+       //agregar relacion
+       const queryEquiposUsuarios = 'INSERT INTO `equipos_usuarios`(`id_equipo`, `id_usuario`) VALUES (?,?)'
+       mysqlConnection.query(queryEquiposUsuarios, [equipo_id, usuario_id],(err, rows, fields) => {
+         if (err) throw err;});
+ 
+       //agregar relacion
+       const queryEquiposMarcas = 'INSERT INTO `equipos_marcas`(`id_equipo`, `id_marca`) VALUES (?,?)'
+       mysqlConnection.query(queryEquiposMarcas, [equipo_id, marca_id],(err, rows, fields) => {
+         if (err) throw err;});
+
+         //agregar relacion
+       const queryEquiposTipos = 'INSERT INTO `equipos_tipos`(`id_equipo`, `id_tipo`) VALUES (?,?)'
+       mysqlConnection.query(queryEquiposTipos, [equipo_id, tipo_id],(err, rows, fields) => {
+         if (err) throw err;});
+
+            //agregar relacion
+       const queryEquiposRegistros = 'INSERT INTO `registros`(`equipo_id`) VALUES (?)'
+       mysqlConnection.query(queryEquiposRegistros, [equipo_id],(err, rows, fields) => {
+        const registro_id = rows.insertId
+            console.log(registro_id)
+            const queryEquiposRegistros = 'INSERT INTO `equipos_registros`(`id_equipo`, `id_registro`) VALUES (?,?)'
+          mysqlConnection.query(queryEquiposRegistros, [equipo_id, registro_id],(err, rows, fields) => {
+            if (err) throw err;});
+         if (err) throw err;});
+
+     } else {
+      console.log(err);
+    }
+    });
+    });
+
+    
+// INSERT An Employee
+router.post('/registros', async (req, res) => {
+  const {equipo_id} = req.body;
+  console.log(equipo_id);
+  const query = 'INSERT INTO `registros`(`equipo_id`) VALUES (?)'
+   mysqlConnection.query(query, [equipo_id],(err, rows, fields) => {
+    if(!err) {
+      //rescupero el id de la transaccion hecha
+      console.log(rows.insertId);
+      res.json(
+        {
+          status: 'Registro Saved',
+        });
+    } else {
+      console.log(err);
+    }
+  });
+});
+
+
+// INSERT An Employee
+router.post('/marcas', async (req, res) => {
+  const {nombre} = req.body;
+  console.log(nombre);
+  const query = 'INSERT INTO `marcas`(`nombre`) VALUES (?)'
+   mysqlConnection.query(query, [nombre],(err, rows, fields) => {
+    if(!err) {
+      //rescupero el id de la transaccion hecha
+      console.log(rows.insertId);
+      res.json(
+        {
+          status: 'Marca Saved',
+        });
+    } else {
+      console.log(err);
+    }
+  });
 });
 
 router.put('/:id', (req, res) => {

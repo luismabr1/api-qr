@@ -5,24 +5,36 @@ import AuthButton from '../Approve';
 const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false});
 
 const QR = (props) => {
-    const [result, setResult] = useState()
+    const [result, setResult] = useState({})
     const [visible, setVisible] = useState(null)
     const [error, setError] = useState()
-    const [registro, setRegistro] = useState()
-    const [marca, setMarca] = useState()
-    const [tipo, setTipo] = useState()
-    const [usuarios, setUsuarios] = useState()
+    const [scan, setScan] = useState(false)
+    const [equipo, setEquipo] = useState({})
+    console.log(scan)
 
     const handleScan = async (data) =>  {
       if(data){
-        const url = 'http://localhost:3001/listarDepartamento/' + data
-        fetch(url, {mode:'cors'})
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ equipo_id:equipo })
+      };
+      fetch('http://localhost:3001/registros', requestOptions)
+      .then(response => response.json())
+      .then(data => console.log(data.id));
+      //puede ser pedida despues y asi el console log de ariba se cambia al setEquipo y listo
+
+      const url = 'http://localhost:3001/listarEquipo/' + data
+      fetch(url, {mode:'cors'})
           .then((response) => {
             if(!response.ok) throw new Error(response.status);
             else return response.json();
           })
           .then((data) => {
-            setResult(data);
+            setResult(data)
+            setScan(true)
+            console.log(scan)
+            setEquipo(data.id)
             setVisible(true)
             console.log("DATA STORED");
           })
@@ -39,22 +51,6 @@ const QR = (props) => {
         console.error(err)
       } 
 
-      const handleDetalles = async (data) => {
-        Promise.all([
-          fetch('http://localhost:3001/listarUsuarios'), 
-          fetch('http://localhost:3001/listarEquipos'),
-          fetch('http://localhost:3001/listarDepartamentos'),
-          fetch('http://localhost:3001/listarMarcas'),
-  
-        ]).then(([items, contactlist, itemgroup]) => {
-  
-        }).catch((err) => {
-            console.log(err);
-        });
-      }
-
-    
-    
 
     return (
         <>
@@ -66,32 +62,15 @@ const QR = (props) => {
             />
           {console.log(result)}
 
-          {
-
-              <AuthButton
-                visible={visible}
-                result={result}
-                error={error}
-              />
+          { scan &&
+              <Popup/>   
+            } 
+            <AuthButton
+              visible={visible}
+              result={result}
+              error={error}
+            />
           
-
-/*           visible
-
-              ? 
-                    <div>
-                          <CheckIcon />
-                          <Button >Detalles</Button>  
-                          <p>{result.serial}</p>
-                    </div>
-
-              : 
-              
-              <RejectIcon />
-
-          
-          
-           } */
-          }
 
         </>
     );

@@ -11,6 +11,12 @@ const Home = (props) => {
    const equipos=props.equipos
    const departamentos=props.departamentos
    const cargos=props.cargos 
+   const registros=props.registros 
+   const tipos=props.tipos
+   const modelos=props.modelos 
+   const marcas=props.marcas
+
+
 
 
   return (
@@ -27,6 +33,10 @@ const Home = (props) => {
           equipos={equipos}
           departamentos={departamentos}
           cargos={cargos} 
+          registros={registros}
+          marcas={marcas}
+          modelos={modelos}
+          tipos={tipos}
         />
       </FormLayout>
 
@@ -60,19 +70,27 @@ const Home = (props) => {
 }
 
  export async function getStaticProps() {
-  const [usuariosRes, equiposRes, departamentosRes, cargosRes] = await Promise.all([
+  const [usuariosRes, equiposRes, departamentosRes, cargosRes, registrosRes, marcasRes, modelosRes, tiposRes] = await Promise.all([
     fetch('http://localhost:3001/listarUsuarios'), 
     fetch('http://localhost:3001/listarEquipos'),
     fetch('http://localhost:3001/listarDepartamentos'),
     fetch('http://localhost:3001/listarCargos'),
+    fetch('http://localhost:3001/listarRegistros'),
+    fetch('http://localhost:3001/listarMarcas'),
+    fetch('http://localhost:3001/listarModelos'),
+    fetch('http://localhost:3001/listarTipos')
   ]);
-  const [usuarios, equipos, departamentos, cargos] = await Promise.all([
+  const [usuarios, equipos, departamentos, cargos, registros, marcas, modelos, tipos] = await Promise.all([
     usuariosRes.json(), 
     equiposRes.json(),
     departamentosRes.json(),
-    cargosRes.json()
+    cargosRes.json(),
+    registrosRes.json(),
+    marcasRes.json(),
+    modelosRes.json(),
+    tiposRes.json()
   ]);
-  return { props: { usuarios, equipos, departamentos, cargos } };
+  return { props: { usuarios, equipos, departamentos, cargos, registros, marcas, modelos, tipos } };
 }
 
 
