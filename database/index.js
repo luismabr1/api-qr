@@ -1,9 +1,9 @@
 const mysql = require('mysql');
 
 const mysqlConnection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
+  host: 'https://gator3312.hostgator.com:2083/',
+  user: 'wifi',
+  password: '123456',
   database: 'modo_qr',
   multipleStatements: true
 });
