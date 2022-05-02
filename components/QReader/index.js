@@ -14,7 +14,7 @@ const QR = () => {
     const handleScan = async (data) =>  {
       //puede ser pedida despues y asi el console log de ariba se cambia al setEquipo y listo
           if(data) {
-          const url = 'http://localhost:3001/listarRegistros/' + data
+          const url = 'https://gator3312.hostgator.com:2083/listarRegistros/' + data
           fetch(url, {mode:'cors'})
               .then((response) => {
                 if(!response.ok) throw new Error(response.status);

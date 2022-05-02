@@ -24,7 +24,7 @@ const FormUsuarios = (props) =>{
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({nombre: nombre, apellido: apellido, cedula: cedula, sexo: sexo, departamento: departamento, equipo: equipo, cargo:cargo})
       };
-      fetch('http://localhost:3001/usuarios', requestOptions)
+      fetch('https://gator3312.hostgator.com:2083/usuarios', requestOptions)
           .then(response => response.json())
           .then(data => setEquipo(data.id));
           

@@ -17,7 +17,7 @@ const FormTipos = (props) =>{
           body: JSON.stringify({nombre: tipo})
       };
 
-     await fetch('http://localhost:3001/tipos', requestOptions)
+     await fetch('https://gator3312.hostgator.com:2083/tipos', requestOptions)
           .then(response => response.json())
           .then(data => setTipos(data.id));
 
