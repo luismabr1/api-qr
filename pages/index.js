@@ -4,7 +4,6 @@ import { colors } from '../styles/theme'
 import QR from '../components/QReader'
 import LogoModo from '../components/Logo.js'
 
-
 const Home = ( props ) => {
   const usuarios= props.usuarios
   const cargos=props.cargos
@@ -70,12 +69,12 @@ export default Home;
 
 export async function getStaticProps() {
   const [usuariosRes, departamentosRes, cargosRes, modelosRes, marcasRes, tiposRes] = await Promise.all([
-    fetch('https://gator3312.hostgator.com:2083/listarUsuarios'), 
-    fetch('https://gator3312.hostgator.com:2083/listarDepartamentos'),
-    fetch('https://gator3312.hostgator.com:2083/listarCargos'),
-    fetch('https://gator3312.hostgator.com:2083/listarModelos'),
-    fetch('https://gator3312.hostgator.com:2083/listarMarcas'),
-    fetch('https://gator3312.hostgator.com:2083/listarTipos')
+    fetch('http://192.185.225.58/listarUsuarios'), 
+    fetch('http://192.185.225.58/listarDepartamentos'),
+    fetch('http://192.185.225.58/listarCargos'),
+    fetch('http://192.185.225.58/listarModelos'),
+    fetch('http://192.185.225.58/listarMarcas'),
+    fetch('http://192.185.225.58/listarTipos')
 
   ]);
   const [usuarios, departamentos, cargos, modelos, marcas, tipos] = await Promise.all([

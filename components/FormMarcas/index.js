@@ -17,7 +17,7 @@ const FormMarcas = (props) =>{
           body: JSON.stringify({nombre: marca})
       };
 
-     await fetch('https://gator3312.hostgator.com:2083/marcas', requestOptions)
+     await fetch('http://192.185.225.58/marcas', requestOptions)
           .then(response => response.json())
           .then(data => setMarcas(data.id));
 

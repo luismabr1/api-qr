@@ -67,14 +67,14 @@ const Home = (props) => {
 
  export async function getStaticProps() {
   const [usuariosRes, equiposRes, departamentosRes, cargosRes, registrosRes, marcasRes, modelosRes, tiposRes] = await Promise.all([
-    fetch('https://gator3312.hostgator.com:2083/listarUsuarios'), 
-    fetch('https://gator3312.hostgator.com:2083/listarEquipos'),
-    fetch('https://gator3312.hostgator.com:2083/listarDepartamentos'),
-    fetch('https://gator3312.hostgator.com:2083/listarCargos'),
-    fetch('https://gator3312.hostgator.com:2083/listarRegistros'),
-    fetch('https://gator3312.hostgator.com:2083/listarMarcas'),
-    fetch('https://gator3312.hostgator.com:2083/listarModelos'),
-    fetch('https://gator3312.hostgator.com:2083/listarTipos')
+    fetch('http://192.185.225.58/listarUsuarios'), 
+    fetch('http://192.185.225.58/listarEquipos'),
+    fetch('http://192.185.225.58/listarDepartamentos'),
+    fetch('http://192.185.225.58/listarCargos'),
+    fetch('http://192.185.225.58/listarRegistros'),
+    fetch('http://192.185.225.58/listarMarcas'),
+    fetch('http://192.185.225.58/listarModelos'),
+    fetch('http://192.185.225.58/listarTipos')
   ]);
   const [usuarios, equipos, departamentos, cargos, registros, marcas, modelos, tipos] = await Promise.all([
     usuariosRes.json(), 

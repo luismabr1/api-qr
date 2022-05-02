@@ -16,7 +16,7 @@ const listaMarcas = props.marcas
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({nombre: nombre, marca_id: marca})
       };
-      fetch('https://gator3312.hostgator.com:2083/modelos', requestOptions)
+      fetch('hhttp://192.185.225.58/modelos', requestOptions)
           .then(response => response.json())
           .then(data => setMarca(data.id));
           setTimeout(() => {

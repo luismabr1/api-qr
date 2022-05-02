@@ -17,7 +17,7 @@ const listaDepartamentos = props.departamentos
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({nombre: nombre, departamento_id: departamento})
       };
-      fetch('http://localhost:3001/cargos', requestOptions)
+      fetch('http://192.185.225.58/cargos', requestOptions)
           .then(response => response.json())
           .then(data => setCargo(data.id));
           setTimeout(() => {
