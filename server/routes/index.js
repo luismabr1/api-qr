@@ -133,6 +133,22 @@ router.get('/listarDepartamento/:id', (req, res) => {
   });
 });
 
+/* AQUI ESTA EL QUERY DEL REGISTRO QUE SE VA MOSTRAR EN PANTALLA UNA VEZ SE MANDE EL ID DEL EQUIPO*/
+
+// GET An Employee
+router.get('/listarRegistros/:id', (req, res) => {
+  const { id } = req.params; 
+  mysqlConnection.query('SELECT equipos.id AS equipo_id, equipos.serial, marcas.nombre AS marca, modelos.nombre AS modelo, tipos.nombre AS tipo, usuarios.nombre AS usuario, departamentos.nombre AS departamento, cargos.nombre AS cargo FROM equipos, usuarios, marcas, departamentos, cargos, modelos, tipos WHERE usuarios.id = equipos.usuario_id AND equipos.id = ? AND marcas.id = equipos.marca_id AND departamentos.id = usuarios.departamento_id AND cargos.id = usuarios.cargo_id AND tipos.id = equipos.tipo_id AND modelos.id = equipos.modelo_id', [id], (err, rows, fields) => {
+    if (!err) {
+      res.json(rows[0]);
+    } else {
+      console.log("Fetch Error :-S", err)
+    }
+  });
+});
+
+/*****************************************************************************************************/
+
 
 // GET An Employee
 router.get('/:id', (req, res) => {

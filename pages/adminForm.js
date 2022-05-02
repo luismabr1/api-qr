@@ -6,7 +6,6 @@ import SelectForm from '../components/SelectForm'
 
 const Home = (props) => {
   /* manten el props fuera de llaves */
-
    const users=props.usuarios
    const equipos=props.equipos
    const departamentos=props.departamentos
@@ -15,9 +14,6 @@ const Home = (props) => {
    const tipos=props.tipos
    const modelos=props.modelos 
    const marcas=props.marcas
-
-
-
 
   return (
     <>

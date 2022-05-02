@@ -9,8 +9,8 @@ export const globalStyles = css.global`
   html,
   body {
     background-image:
-      radial-gradient(${backgroundColor} 1px, #fdfdfd 1px),
-      radial-gradient(${backgroundColor} 1px, #fdfdfd 1px);
+      radial-gradient(${backgroundColor} 1px, #000000 1px),
+      radial-gradient(${backgroundColor} 1px, #ffffff 1px);
     background-position: 0 0, 25px 25px;
     background-size: 50px 50px;
     padding: 0;
@@ -30,7 +30,6 @@ export default css`
   }
   main {
     background: #fff;
-    border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
     height: 100%;
     width: 100%;
@@ -38,7 +37,7 @@ export default css`
   }
   @media (min-width: ${breakpoints.mobile}) {
     main {
-      height: 90vh;
+      height: 80vh;
       width: ${breakpoints.mobile};
     }
   }`

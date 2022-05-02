@@ -1,37 +1,39 @@
-import {useEffect, useState} from 'react'
 import Head from 'next/head'
 import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
 import QR from '../components/QReader'
-import Button from '../components/Button'
+import LogoModo from '../components/Logo.js'
 
 
 const Home = ( props ) => {
-  const equipos=props.equipos
   const usuarios= props.usuarios
   const cargos=props.cargos
   const departamentos = props.departamentos
+  const modelos = props.modelos
+  const marcas = props.marcas
+  const tipos = props.tipos
+  
   return (
     <>
 
       <Head>
-        <title>devter 🐦</title>
+        <title>MoDo QR</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <AppLayout>
         <section>
-          <h1>MoDO QR</h1>
-          <h2>Scaner<br />for security 👩‍💻👨‍💻</h2>
 
-          <div>
+            <LogoModo />
+
             <QR
               usuarios={usuarios}
               cargos={cargos}
               departamentos={departamentos}
+              modelos={modelos}
+              marcas={marcas}
+              tipos={tipos}
             />
-            
-          </div>
 
         </section>
       </AppLayout>
@@ -46,13 +48,13 @@ const Home = ( props ) => {
         section {
           display: grid;
           height: 100%;
+          grid-gap:0px;
           place-content: center;
           place-items: center;
         }
         h1 {
-          color: ${colors.secondary};
+          color: ${colors.modoNegro};
           font-weight: 800;
-          margin-bottom: 16px;
         }
         h2 {
           color: ${colors.primary};
@@ -67,18 +69,22 @@ const Home = ( props ) => {
 export default Home;
 
 export async function getStaticProps() {
-  const [usuariosRes, equiposRes, departamentosRes, cargosRes] = await Promise.all([
+  const [usuariosRes, departamentosRes, cargosRes, modelosRes, marcasRes, tiposRes] = await Promise.all([
     fetch('http://localhost:3001/listarUsuarios'), 
-    fetch('http://localhost:3001/listarEquipos'),
     fetch('http://localhost:3001/listarDepartamentos'),
-    fetch('http://localhost:3001/listarCargos')
+    fetch('http://localhost:3001/listarCargos'),
+    fetch('http://localhost:3001/listarModelos'),
+    fetch('http://localhost:3001/listarMarcas'),
+    fetch('http://localhost:3001/listarTipos')
 
   ]);
-  const [usuarios, equipos, departamentos, cargos] = await Promise.all([
+  const [usuarios, departamentos, cargos, modelos, marcas, tipos] = await Promise.all([
     usuariosRes.json(), 
-    equiposRes.json(),
     departamentosRes.json(),
-    cargosRes.json()
+    cargosRes.json(),
+    modelosRes.json(),
+    marcasRes.json(),
+    tiposRes.json()
   ]);
-  return { props: { usuarios, equipos, departamentos, cargos} };
+  return { props: { usuarios, departamentos, cargos, modelos, marcas, tipos} };
 }

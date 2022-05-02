@@ -1,49 +1,38 @@
 import {useState, useEffect} from 'react'
 import dynamic from "next/dynamic";
 import AuthButton from '../Approve';
+import Modal from '../Popup';
 
 const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false});
 
-const QR = (props) => {
-    const [result, setResult] = useState({})
+const QR = () => {
+    const [showModal, setShowModal] = useState(false)
+    const [result, setResult] = useState([])
     const [visible, setVisible] = useState(null)
     const [error, setError] = useState()
-    const [scan, setScan] = useState(false)
-    const [equipo, setEquipo] = useState({})
-    console.log(scan)
 
     const handleScan = async (data) =>  {
-      if(data){
-        const requestOptions = {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ equipo_id:equipo })
-      };
-      fetch('http://localhost:3001/registros', requestOptions)
-      .then(response => response.json())
-      .then(data => console.log(data.id));
       //puede ser pedida despues y asi el console log de ariba se cambia al setEquipo y listo
-
-      const url = 'http://localhost:3001/listarEquipo/' + data
-      fetch(url, {mode:'cors'})
-          .then((response) => {
-            if(!response.ok) throw new Error(response.status);
-            else return response.json();
-          })
-          .then((data) => {
-            setResult(data)
-            setScan(true)
-            console.log(scan)
-            setEquipo(data.id)
-            setVisible(true)
-            console.log("DATA STORED");
-          })
-          .catch((error) => {
-            setError('Valor no encontrado: ' + error);
-            console.info(error)
-            setVisible(false);
-          });
-      }
+          if(data) {
+          const url = 'http://localhost:3001/listarRegistros/' + data
+          fetch(url, {mode:'cors'})
+              .then((response) => {
+                if(!response.ok) throw new Error(response.status);
+                else return response.json();
+              })
+              .then((data) => {
+                setResult(data)
+                setShowModal(true)
+                setVisible(true)
+                console.log("DATA STORED");
+                
+              })
+              .catch((error) => {
+                setError('Valor no encontrado: ' + error);
+                console.info(error)
+                setVisible(false);
+              });
+          }
       }
 
       const handleError = (err) => {
@@ -62,14 +51,47 @@ const QR = (props) => {
             />
           {console.log(result)}
 
-          { scan &&
-              <Popup/>   
-            } 
             <AuthButton
               visible={visible}
               result={result}
               error={error}
             />
+            {/* falta mandar el id del equipo */}
+            <Modal data={result.equipo_id} show={showModal} onClose={()=> setShowModal(false)}>
+                  <h1>Serial</h1>
+                  {/* {result.filter(([key, value]) => [value] )} */}
+                  {
+                    <div>
+                      <ul>
+                        <span>MARCA</span>
+                        <li>{result.marca}</li>
+
+                        <span>MODELO</span>
+                        <li>{result.modelo}</li>
+
+                        <span>SERIAL</span>
+                        <li>{result.serial}</li>
+
+                        <span>ASIGNADO A:</span>
+                        <li>{result.usuario}</li>
+
+                        <span>DEPARTAMENTO</span>
+                        <li>{result.departamento}</li>
+
+                        <span>CARGO</span>
+                        <li>{result.cargo}</li>
+
+                        <span>TIPO</span>
+                        <li>{result.tipo}</li>
+
+                      </ul>
+                    </div>
+
+
+                  }
+
+                    
+            </Modal>
           
 
         </>

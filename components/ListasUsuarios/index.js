@@ -6,7 +6,6 @@ const ListasUsuarios = (props) => {
     const [lists, setLists] = useState(props.equipos)
     const [serial, setSerial] = useState([])
     const [show, setShow]= useState(false)
-    console.log(props)
     const users = props.users
     const equipos = props.equipos
     const departamentos = props.departamentos

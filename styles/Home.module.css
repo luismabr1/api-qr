@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Kastelov";
+  src: url("./fonts/Kastelov\ -\ Axiforma\ ExtraBold.otf");
+}
+
 .container {
   padding: 0 2rem;
 }
@@ -61,8 +66,7 @@
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+  font-family: "Kastelov", bold;
 }
 
 .grid {
