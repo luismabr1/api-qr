@@ -67,14 +67,14 @@ const Home = (props) => {
 
  export async function getStaticProps() {
   const [usuariosRes, equiposRes, departamentosRes, cargosRes, registrosRes, marcasRes, modelosRes, tiposRes] = await Promise.all([
-    fetch('http://192.185.225.58/listarUsuarios'), 
-    fetch('http://192.185.225.58/listarEquipos'),
-    fetch('http://192.185.225.58/listarDepartamentos'),
-    fetch('http://192.185.225.58/listarCargos'),
-    fetch('http://192.185.225.58/listarRegistros'),
-    fetch('http://192.185.225.58/listarMarcas'),
-    fetch('http://192.185.225.58/listarModelos'),
-    fetch('http://192.185.225.58/listarTipos')
+    fetch('https://modo-qr.vercel.app/listarUsuarios'), 
+    fetch('https://modo-qr.vercel.app/listarEquipos'),
+    fetch('https://modo-qr.vercel.app/listarDepartamentos'),
+    fetch('https://modo-qr.vercel.app/listarCargos'),
+    fetch('https://modo-qr.vercel.app/listarRegistros'),
+    fetch('https://modo-qr.vercel.app/listarMarcas'),
+    fetch('https://modo-qr.vercel.app/listarModelos'),
+    fetch('https://modo-qr.vercel.app/listarTipos')
   ]);
   const [usuarios, equipos, departamentos, cargos, registros, marcas, modelos, tipos] = await Promise.all([
     usuariosRes.json(), 

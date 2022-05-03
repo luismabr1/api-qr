@@ -24,7 +24,7 @@ const FormUsuarios = (props) =>{
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({nombre: nombre, apellido: apellido, cedula: cedula, sexo: sexo, departamento: departamento, equipo: equipo, cargo:cargo})
       };
-      fetch('http://192.185.225.58/usuarios', requestOptions)
+      fetch('https://modo-qr.vercel.app/usuarios', requestOptions)
           .then(response => response.json())
           .then(data => setEquipo(data.id));
           

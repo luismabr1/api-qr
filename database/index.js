@@ -1,10 +1,10 @@
 const mysql = require('mysql');
 
 const mysqlConnection = mysql.createConnection({
-  host: 'http://192.185.225.58',
-  user: 'wifi',
-  password: '123456',
-  database: 'modo_qr',
+  host: 'https://gator3312.hostgator.com:2083/',
+  user: 'modoccas_qr ',
+  password: 'Modoqr2022',
+  database: 'modoccas_qr',
   multipleStatements: true
 });
 

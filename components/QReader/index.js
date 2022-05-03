@@ -14,7 +14,7 @@ const QR = () => {
     const handleScan = async (data) =>  {
       //puede ser pedida despues y asi el console log de ariba se cambia al setEquipo y listo
           if(data) {
-          const url = 'http://192.185.225.58/listarRegistros/' + data
+          const url = 'https://modo-qr.vercel.app/listarRegistros/' + data
           fetch(url, {mode:'cors'})
               .then((response) => {
                 if(!response.ok) throw new Error(response.status);
