@@ -24,7 +24,7 @@ const Modal = ({data, show, onClose, children}) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ equipo_id:equipo })
       };
-        fetch('https://modo-qr.vercel.app/registros', requestOptions)
+        fetch('http://localhost:3001/registros', requestOptions)
         .then(response => response.json())
         .then(data => console.log("Exito"));
     }

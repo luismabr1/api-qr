@@ -17,7 +17,7 @@ const FormTipos = (props) =>{
           body: JSON.stringify({nombre: tipo})
       };
 
-     await fetch('https://modo-qr.vercel.app/tipos', requestOptions)
+     await fetch('http://localhost:3001/tipos', requestOptions)
           .then(response => response.json())
           .then(data => setTipos(data.id));
 

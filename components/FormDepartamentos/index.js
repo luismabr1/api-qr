@@ -17,7 +17,7 @@ const FormDepartamentos = (props) =>{
           body: JSON.stringify({nombre: departamento})
       };
 
-     await fetch('https://modo-qr.vercel.app/departamentos', requestOptions)
+     await fetch('http://localhost:3001/departamentos', requestOptions)
           .then(response => response.json())
           .then(data => setDepartamento(data.id));
 

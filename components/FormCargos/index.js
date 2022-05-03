@@ -17,7 +17,7 @@ const listaDepartamentos = props.departamentos
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({nombre: nombre, departamento_id: departamento})
       };
-      fetch('https://modo-qr.vercel.app/cargos', requestOptions)
+      fetch('http://localhost:3001/cargos', requestOptions)
           .then(response => response.json())
           .then(data => setCargo(data.id));
           setTimeout(() => {

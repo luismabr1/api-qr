@@ -1,10 +1,10 @@
 const mysql = require('mysql');
 
 const mysqlConnection = mysql.createConnection({
-  host: 'https://databases.000webhost.com/',
-  user: 'id18877315_lbrito',
-  password: 'oU[9=(M[(QBJS51G',
-  database: 'id18877315_modo_qr',
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'modo_qr',
   multipleStatements: true
 });
 

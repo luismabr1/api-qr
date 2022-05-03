@@ -17,7 +17,7 @@ const FormMarcas = (props) =>{
           body: JSON.stringify({nombre: marca})
       };
 
-     await fetch('https://modo-qr.vercel.app/marcas', requestOptions)
+     await fetch('http://localhost:3001/marcas', requestOptions)
           .then(response => response.json())
           .then(data => setMarcas(data.id));
 
