@@ -1,6 +1,11 @@
 const bodyParser = require('body-parser');
+// Import builtin NodeJS modules to instantiate the service
+const https = require("https");
+const fs = require("fs");
 const express = require('express');
 const app = express();
+
+
 const cors = require('cors');
 app.use(cors({ origin: true }));
 
@@ -14,6 +19,6 @@ app.use(bodyParser.json());
 app.use(require('./routes'));
 
 // Starting the server
-app.listen(app.get('port'), () => {
+https.createServer(app).listen(app.get('port'), () => {
   console.log(`Server on port ${app.get('port')}`);
 });
