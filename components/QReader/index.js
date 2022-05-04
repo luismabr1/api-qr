@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import AuthButton from '../Approve';
 import Modal from '../Popup';
 
-const QrReader = dynamic(() => import("react-qr-reader"), { ssr: false});
+const QrReader = dynamic(() => import("modern-react-qr-reader"), { ssr: false});
 
 const QR = () => {
     const [showModal, setShowModal] = useState(false)

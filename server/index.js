@@ -5,7 +5,7 @@ const cors = require('cors');
 app.use(cors({ origin: true }));
 
 // Settings
-app.set('port', process.env.PORT || 3001);
+app.set('port', process.env.PORT || 3002);
 
 // Middlewares
 app.use(bodyParser.json());

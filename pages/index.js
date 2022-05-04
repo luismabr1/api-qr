@@ -70,12 +70,12 @@ export default Home;
 
 export async function getStaticProps() {
   const [usuariosRes, departamentosRes, cargosRes, modelosRes, marcasRes, tiposRes] = await Promise.all([
-    fetch('http://localhost:3001/listarUsuarios'), 
-    fetch('http://localhost:3001/listarDepartamentos'),
-    fetch('http://localhost:3001/listarCargos'),
-    fetch('http://localhost:3001/listarModelos'),
-    fetch('http://localhost:3001/listarMarcas'),
-    fetch('http://localhost:3001/listarTipos')
+    fetch('http://192.168.1.14:3002/listarUsuarios'), 
+    fetch('http://192.168.1.14:3002/listarDepartamentos'),
+    fetch('http://192.168.1.14:3002/listarCargos'),
+    fetch('http://192.168.1.14:3002/listarModelos'),
+    fetch('http://192.168.1.14:3002/listarMarcas'),
+    fetch('http://192.168.1.14:3002/listarTipos')
 
   ]);
   const [usuarios, departamentos, cargos, modelos, marcas, tipos] = await Promise.all([

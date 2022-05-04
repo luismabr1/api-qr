@@ -17,6 +17,7 @@
     "cors": "2.8.5",
     "css-loader": "6.7.1",
     "express": "4.17.3",
+    "modern-react-qr-reader": "^1.0.12",
     "mysql": "2.18.1",
     "next": "12.1.0",
     "react": "17.0.2",
