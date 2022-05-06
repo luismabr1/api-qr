@@ -1,10 +1,11 @@
 const mysql = require('mysql');
+const { MYSQL_DATABASE, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD } = require('../config');
 
 const mysqlConnection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'modo_qr',
+  host: MYSQL_PORT,
+  user: MYSQL_USER,
+  password: MYSQL_PASSWORD,
+  database: MYSQL_DATABASE,
   multipleStatements: true
 });
 

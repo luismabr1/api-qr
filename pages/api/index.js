@@ -3,12 +3,13 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 const routes = require('./routes')
+const { MYSQL_PORT } = require('../../config');
 
 const cors = require('cors');
 app.use(cors({ origin: true }));
 
 // Settings
-app.set('port', process.env.PORT || 3001);
+app.set('port', MYSQL_PORT);
 
 // Middlewares
 app.use(bodyParser.json());
