@@ -1,11 +1,11 @@
 const mysql = require('mysql');
-const { MYSQL_DATABASE, MYSQL_PORT, MYSQL_USER, MYSQL_PASSWORD } = require('../config');
+const { MYSQL_DATABASE, MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD } = require('../config');
 
 const mysqlConnection = mysql.createConnection({
-  host: MYSQL_PORT,
-  user: MYSQL_USER,
-  password: MYSQL_PASSWORD,
-  database: MYSQL_DATABASE,
+  host: MYSQL_HOST || 'remotemysql.com',
+  user: MYSQL_USER || '5atQzokoAZ',
+  password: MYSQL_PASSWORD || 'GQUrZaHS7E',
+  database: MYSQL_DATABASE || '5atQzokoAZ',
   multipleStatements: true
 });
 
