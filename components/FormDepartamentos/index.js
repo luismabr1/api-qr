@@ -17,7 +17,7 @@ const FormDepartamentos = (props) =>{
           body: JSON.stringify({nombre: departamento})
       };
 
-     await fetch('http://localhost:3001/departamentos', requestOptions)
+     await fetch('https://api-qr-node.vercel.app/api/user', requestOptions)
           .then(response => response.json())
           .then(data => setDepartamento(data.id));
 

@@ -69,22 +69,22 @@ const Home = ( props ) => {
 export default Home;
 
 export async function getStaticProps() {
-  const [usuariosRes, departamentosRes, cargosRes, modelosRes, marcasRes, tiposRes] = await Promise.all([
-    fetch('https://modo-qr.vercel.app/listarUsuarios'), 
-    fetch('https://modo-qr.vercel.app/listarDepartamentos'),
+  const [usuariosRes/* , departamentosRes, cargosRes, modelosRes, marcasRes, tiposRes */] = await Promise.all([
+    fetch('https://modo-qr.vercel.app/api/user'), 
+/*     fetch('https://modo-qr.vercel.app/listarDepartamentos'),
     fetch('https://modo-qr.vercel.app/listarCargos'),
     fetch('https://modo-qr.vercel.app/listarModelos'),
     fetch('https://modo-qr.vercel.app/listarMarcas'),
-    fetch('https://modo-qr.vercel.app/listarTipos')
+    fetch('https://modo-qr.vercel.app/listarTipos') */
 
   ]);
-  const [usuarios, departamentos, cargos, modelos, marcas, tipos] = await Promise.all([
+  const [usuarios/* , departamentos, cargos, modelos, marcas, tipos */] = await Promise.all([
     usuariosRes.json(), 
-    departamentosRes.json(),
+/*     departamentosRes.json(),
     cargosRes.json(),
     modelosRes.json(),
     marcasRes.json(),
-    tiposRes.json()
+    tiposRes.json() */
   ]);
-  return { props: { usuarios, departamentos, cargos, modelos, marcas, tipos} };
+  return { props: { usuarios/* , departamentos, cargos, modelos, marcas, tipos */} };
 }

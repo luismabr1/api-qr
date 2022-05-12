@@ -24,7 +24,7 @@ const FormUsuarios = (props) =>{
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({nombre: nombre, apellido: apellido, cedula: cedula, sexo: sexo, departamento: departamento, equipo: equipo, cargo:cargo})
       };
-      fetch('http://localhost:3001/usuarios', requestOptions)
+      fetch('https://api-qr-node.vercel.app/api/user', requestOptions)
           .then(response => response.json())
           .then(data => setEquipo(data.id));
           

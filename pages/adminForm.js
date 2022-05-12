@@ -66,27 +66,27 @@ const Home = (props) => {
 }
 
  export async function getStaticProps() {
-  const [usuariosRes, equiposRes, departamentosRes, cargosRes, registrosRes, marcasRes, modelosRes, tiposRes] = await Promise.all([
+  const [usuariosRes/* , equiposRes, departamentosRes, cargosRes, registrosRes, marcasRes, modelosRes, tiposRes */] = await Promise.all([
     fetch('https://modo-qr.vercel.app/listarUsuarios'), 
-    fetch('https://modo-qr.vercel.app/listarEquipos'),
+/*     fetch('https://modo-qr.vercel.app/listarEquipos'),
     fetch('https://modo-qr.vercel.app/listarDepartamentos'),
     fetch('https://modo-qr.vercel.app/listarCargos'),
     fetch('https://modo-qr.vercel.app/listarRegistros'),
     fetch('https://modo-qr.vercel.app/listarMarcas'),
     fetch('https://modo-qr.vercel.app/listarModelos'),
-    fetch('https://modo-qr.vercel.app/listarTipos')
+    fetch('https://modo-qr.vercel.app/listarTipos') */
   ]);
-  const [usuarios, equipos, departamentos, cargos, registros, marcas, modelos, tipos] = await Promise.all([
+  const [usuarios/* , equipos, departamentos, cargos, registros, marcas, modelos, tipos */] = await Promise.all([
     usuariosRes.json(), 
-    equiposRes.json(),
+/*     equiposRes.json(),
     departamentosRes.json(),
     cargosRes.json(),
     registrosRes.json(),
     marcasRes.json(),
     modelosRes.json(),
-    tiposRes.json()
+    tiposRes.json() */
   ]);
-  return { props: { usuarios, equipos, departamentos, cargos, registros, marcas, modelos, tipos } };
+  return { props: { usuarios/* , equipos, departamentos, cargos, registros, marcas, modelos, tipos  */} };
 }
 
 

@@ -25,7 +25,7 @@ const FormEquipos = (props) =>{
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ usuario_id:usuario, marca_id:marca, modelo_id:modelo, serial:serial, tipo_id:tipo})
       };
-      fetch('http://localhost:3001/equipos', requestOptions)
+      fetch('https://api-qr-node.vercel.app/api/user', requestOptions)
           .then(response => response.json())
           .then(data => setEquipo(data.id));
 

@@ -16,7 +16,7 @@ const listaMarcas = props.marcas
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({nombre: nombre, marca_id: marca})
       };
-      fetch('http://localhost:3001/modelos', requestOptions)
+      fetch('https://api-qr-node.vercel.app/api/user', requestOptions)
           .then(response => response.json())
           .then(data => setMarca(data.id));
           setTimeout(() => {

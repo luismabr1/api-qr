@@ -17,7 +17,7 @@ const FormMarcas = (props) =>{
           body: JSON.stringify({nombre: marca})
       };
 
-     await fetch('http://localhost:3001/marcas', requestOptions)
+     await fetch('https://api-qr-node.vercel.app/api/user', requestOptions)
           .then(response => response.json())
           .then(data => setMarcas(data.id));
 
