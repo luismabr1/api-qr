@@ -1,0 +1,10 @@
+.logoMain{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: stretch;
+    justify-content: space-around;
+    align-items: baseline;
+    justify-items: end;
+    font-size: 30px;
+}
