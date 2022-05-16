@@ -5,7 +5,9 @@ import SelectForm from '../components/SelectForm'
 
 const Home = (props) => {
   /* manten el props fuera de llaves */
+  console.log(props.usuarios)
    const users=props.usuarios
+   console.log(users)
    const equipos=props.equipos
 /*   const departamentos=props.departamentos
    const cargos=props.cargos 
@@ -75,7 +77,7 @@ const Home = (props) => {
     fetch('https://modo-qr.vercel.app/listarModelos'),
     fetch('https://modo-qr.vercel.app/listarTipos') */
   ]);
-  const [usuarios , equipos/*, departamentos, cargos, registros, marcas, modelos, tipos */] = await Promise.all([
+  const [usuarios, equipos/*, departamentos, cargos, registros, marcas, modelos, tipos */] = await Promise.all([
     usuariosRes.json(), 
     equiposRes.json(),
 /*    departamentosRes.json(),

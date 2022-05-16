@@ -3,20 +3,20 @@ import FormCargos from "../FormCargos";
 import FormDepartamentos from "../FormDepartamentos";
 import FormUsuarios from "../FormUsuarios";
 import FormEquipos from "../FormEquipos";
-import FormTipos from "../FormTipos";
+/* import FormTipos from "../FormTipos";
 import FormMarcas from "../FormMarcas"
-import FormModelos from "../FormModelos"
+import FormModelos from "../FormModelos" */
 
 const SelectForm = (props) =>{
 
     const users=props.users
     const equipos=props.equipos
-    const departamentos=props.departamentos
+/*     const departamentos=props.departamentos
     const cargos=props.cargos 
     const marcas=props.marcas 
     const modelos=props.modelos 
     const registros=props.registros
-    const tipos=props.tipos
+    const tipos=props.tipos */
 
   const [form, setForm] = useState('USUARIOS');
   const Forms = [{
@@ -56,15 +56,15 @@ const FormRender = ( {form} ) => {
         registros={registros}
         />; */
       case "EQUIPOS":
-        return <FormEquipos modelos={modelos}
-        marcas={marcas}
+        return <FormEquipos /* modelos={modelos} */
+        /* marcas={marcas} */
         usuarios={users}
-        tipos={tipos}
-        registros={registros}
+/*         tipos={tipos}
+        registros={registros} */
         />;
       case "USUARIOS":
-        return <FormUsuarios departamentos={departamentos}
-        cargos={cargos}
+        return <FormUsuarios /* departamentos={departamentos} */
+       /*  cargos={cargos} */
         equipos={equipos}
         />;
 /*       case "CARGOS":

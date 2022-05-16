@@ -4,13 +4,13 @@ import { useState } from 'react';
 
 const ListasUsuarios = (props) => {
     const [lists, setLists] = useState(props.usuarios)
-    const [serial, setSerial] = useState()
+    const [serial, setSerial] = useState([])
     const [show, setShow]= useState(false)
     const users = props.users
     const equipos = props.equipos
-    const departamentos = props.departamentos
+/*     const departamentos = props.departamentos
     const cargos = props.cargos
-
+ */
     const handleUsers = () =>{
          setLists(users)
          setShow(true)

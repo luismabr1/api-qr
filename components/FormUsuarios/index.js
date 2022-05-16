@@ -5,15 +5,15 @@ import { faCircleNotch, faThumbsUp, faCircleExclamation } from '@fortawesome/fre
 
 const FormUsuarios = (props) =>{
     const equipos = props.equipos
-    const departamentos = props.departamentos
-    const cargos=props.cargos
+/*     const departamentos = props.departamentos
+    const cargos=props.cargos */
   const [nombre,setNombre] = useState("");
   const [apellido,setApellido] = useState("");
   const [cedula,setCedula] = useState("");
   const [sexo,setSexo] = useState("");
-  const [departamento,setDepartamento] = useState(null);
-  const [equipo,setEquipo] = useState(null);
-  const [cargo,setCargo] = useState(null);
+/*   const [departamento,setDepartamento] = useState(null); */
+  const [equipo,setEquipo] = useState([]);
+/*   const [cargo,setCargo] = useState(null); */
   const [state, setState] = useState('idle');
 
 
@@ -57,7 +57,7 @@ const FormUsuarios = (props) =>{
                     setSexo(e.target.value)
                 }}/>
                 <label>departamento: </label>
-                <div className="caja">
+              {/*   <div className="caja">
                     <select name="select" onChange={e => setDepartamento(e.target.value)} >
                     
                         {departamentos.map(department => {
@@ -68,21 +68,22 @@ const FormUsuarios = (props) =>{
                         )}
 
                     </select>
-                </div>
+                </div> */}
                 <label>Equipo: </label>
                 <div className="caja">
-                    <select name="select" onChange={e => setDepartamento(e.target.value)} >
+                    <select name="select" onChange={e => setEquipo(e.target.value)} >
                     
-                        {equipos.map(equipo => {
+                        {equipos.body.map(equipo => {
+                            console.log(equipo)
                                     return(
-                                        <option key={equipo.id} value={equipo.id}>{equipo.nombre}</option>
+                                        <option key={equipo.id} value={equipo.id}>{equipo.serial}</option>
                                     )
                                 }   
                         )}
 
                     </select>
                 </div>
-                <label>Cargo: </label>
+                {/* <label>Cargo: </label>
                 <div className="caja">
                     <select name="select" onChange={e => setCargo(e.target.value)}>
                         {cargos.map( cargo => {
@@ -92,7 +93,7 @@ const FormUsuarios = (props) =>{
                                 }   
                         )}
                     </select>
-                </div>
+                </div> */}
 
                 <SubmitButton
                     buttonState={state}
