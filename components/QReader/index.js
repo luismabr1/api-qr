@@ -49,11 +49,12 @@ const QR = () => {
             style={{ width: '40vh' }}
             />
  
-                <AuthButton
+            <AuthButton
                 visible={visible}
                 result={result}
                 error={error}
-                /> 
+            /> 
+            
             {result &&
              <Modal data={result.id} show={showModal} onClose={()=> setShowModal(false)}>
                 {console.log(result)}
