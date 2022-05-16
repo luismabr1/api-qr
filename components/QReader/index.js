@@ -58,16 +58,15 @@ const QR = () => {
              <Modal data={result.id} show={showModal} onClose={()=> setShowModal(false)}>
                 {console.log(result)}
               <h1>NOMBRE</h1>
-                {result.id}
-                {result.serial}
+              <ul>
                  { result.map((value) =>{
                 return(
-                    <ul>
-                        {console.log(value.serial)} 
                         <li key={value.id}>{value.serial}</li>
-                    </ul>
-                )}
-        )}
+                  )}
+                )
+                
+                }
+              </ul>
 
             </Modal> 
           
