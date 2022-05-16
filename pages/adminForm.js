@@ -75,7 +75,7 @@ const Home = (props) => {
     fetch('https://modo-qr.vercel.app/listarModelos'),
     fetch('https://modo-qr.vercel.app/listarTipos') */
   ]);
-  const [usuarios/* , equipos, departamentos, cargos, registros, marcas, modelos, tipos */] = await Promise.all([
+  const [usuarios , equipos/*, departamentos, cargos, registros, marcas, modelos, tipos */] = await Promise.all([
     usuariosRes.json(), 
     equiposRes.json(),
 /*    departamentosRes.json(),
