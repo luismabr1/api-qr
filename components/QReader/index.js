@@ -7,7 +7,7 @@ const QrReader = dynamic(() => import("modern-react-qr-reader"), { ssr: false});
 
 const QR = () => {
     const [showModal, setShowModal] = useState(false)
-    const [result, setResult] = useState([])
+    const [result, setResult] = useState()
     const [visible, setVisible] = useState(null)
     const [error, setError] = useState()
 
@@ -19,11 +19,10 @@ const QR = () => {
           fetch(url, {mode:'cors'})
           .then(response => response.json())
           .then(data => {
-            
             setResult(data.body)
             setShowModal(true)
             setVisible(true)
-            console.log("DATA STORED", data.body);
+            console.log("DATA STORED", data.body)
           })
           
           .catch((error) => {
@@ -58,17 +57,17 @@ const QR = () => {
             {result &&
              <Modal data={result.id} show={showModal} onClose={()=> setShowModal(false)}>
                 {console.log(result)}
-                 {result.filter((value) =>{
+              <h1>NOMBRE</h1>
+                {result.id}
+                {result.serial}
+                 { result.map((value) =>{
                 return(
                     <ul>
                         {console.log(value.serial)} 
                         <li key={value.id}>{value.serial}</li>
                     </ul>
                 )}
-
-
-
-                 )}
+        )}
 
             </Modal> 
           
