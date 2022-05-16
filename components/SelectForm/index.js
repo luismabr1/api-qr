@@ -49,12 +49,12 @@ const SelectForm = (props) =>{
 const FormRender = ( {form} ) => {
     console.log(form)
     switch (form) {
-      case "DEPARTAMENTOS":
+/*       case "DEPARTAMENTOS":
         return <FormDepartamentos usuarios={users}
         marcas={marcas}
         tipos={tipos}
         registros={registros}
-        />;
+        />; */
       case "EQUIPOS":
         return <FormEquipos modelos={modelos}
         marcas={marcas}
@@ -67,7 +67,7 @@ const FormRender = ( {form} ) => {
         cargos={cargos}
         equipos={equipos}
         />;
-      case "CARGOS":
+/*       case "CARGOS":
         return <FormCargos departamentos={departamentos}
         cargos={cargos}
         equipos={equipos} 
@@ -79,7 +79,7 @@ const FormRender = ( {form} ) => {
             marcas={marcas}
         />;
       case "TIPOS":
-        return <FormTipos />;
+        return <FormTipos />; */
       default:
         return null;
     }
