@@ -9,8 +9,8 @@ const Home = (props) => {
    const users=props.usuarios
    console.log(users)
    const equipos=props.equipos
-/*   const departamentos=props.departamentos
    const cargos=props.cargos 
+/*   const departamentos=props.departamentos
    const registros=props.registros 
    const tipos=props.tipos
    const modelos=props.modelos 
@@ -21,15 +21,15 @@ const Home = (props) => {
       <FormLayout
           users={users}
           equipos={equipos}
-/*          departamentos={departamentos}
-          cargos={cargos} */
+/*          departamentos={departamentos}*/
+          cargos={cargos} 
       >
 
         <SelectForm           
           users={users}
           equipos={equipos}
-/*          departamentos={departamentos}
           cargos={cargos} 
+/*          departamentos={departamentos}
           registros={registros}
           marcas={marcas}
           modelos={modelos}
@@ -67,27 +67,27 @@ const Home = (props) => {
 }
 
  export async function getStaticProps() {
-  const [usuariosRes, equiposRes,/* departamentosRes, cargosRes, registrosRes, marcasRes, modelosRes, tiposRes */] = await Promise.all([
+  const [usuariosRes, equiposRes, cargosRes,/* departamentosRes,  registrosRes, marcasRes, modelosRes, tiposRes */] = await Promise.all([
     fetch('https://server-qr.vercel.app/api/user'), 
     fetch('https://server-qr.vercel.app/api/equipos'),
+    fetch('https://server-qr.vercel.app/api/cargos'),
    /* fetch('https://modo-qr.vercel.app/listarDepartamentos'),
-    fetch('https://modo-qr.vercel.app/listarCargos'),
     fetch('https://modo-qr.vercel.app/listarRegistros'),
     fetch('https://modo-qr.vercel.app/listarMarcas'),
     fetch('https://modo-qr.vercel.app/listarModelos'),
     fetch('https://modo-qr.vercel.app/listarTipos') */
   ]);
-  const [usuarios, equipos/*, departamentos, cargos, registros, marcas, modelos, tipos */] = await Promise.all([
+  const [usuarios, equipos, cargos,/*, departamentos,  registros, marcas, modelos, tipos */] = await Promise.all([
     usuariosRes.json(), 
     equiposRes.json(),
-/*    departamentosRes.json(),
     cargosRes.json(),
+/*    departamentosRes.json(),
     registrosRes.json(),
     marcasRes.json(),
     modelosRes.json(),
     tiposRes.json() */
   ]);
-  return { props: { usuarios, equipos, /*departamentos, cargos, registros, marcas, modelos, tipos  */} };
+  return { props: { usuarios, equipos, cargos, /*departamentos,  registros, marcas, modelos, tipos  */} };
 }
 
 

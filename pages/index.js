@@ -7,12 +7,12 @@ import LogoModo from '../components/Logo.js'
 
 const Home = ( props ) => {
   const usuarios= props.usuarios
-/*   const cargos=props.cargos
+  const cargos=props.cargos
   const departamentos = props.departamentos
   const modelos = props.modelos
   const marcas = props.marcas
-  const tipos = props.tipos */
-  
+  const tipos = props.tipos
+
   return (
     <>
 
@@ -28,11 +28,11 @@ const Home = ( props ) => {
 
             <QR
               usuarios={usuarios}
-/*               cargos={cargos}
+              cargos={cargos}
               departamentos={departamentos}
               modelos={modelos}
               marcas={marcas}
-              tipos={tipos} */
+              tipos={tipos} 
             />
 
         </section>
@@ -71,20 +71,20 @@ export default Home;
 export async function getStaticProps() {
   const [usuariosRes/* , departamentosRes, cargosRes, modelosRes, marcasRes, tiposRes */] = await Promise.all([
     fetch('https://server-qr.vercel.app/api/user'), 
-/*     fetch('https://modo-qr.vercel.app/listarDepartamentos'),
-    fetch('https://modo-qr.vercel.app/listarCargos'),
-    fetch('https://modo-qr.vercel.app/listarModelos'),
-    fetch('https://modo-qr.vercel.app/listarMarcas'),
-    fetch('https://modo-qr.vercel.app/listarTipos') */
+    fetch('https://server-qr.vercel.app/api/departamentos'),
+    fetch('https://server-qr.vercel.app/api/cargos'),
+    fetch('https://server-qr.vercel.app/api/modelos'),
+    fetch('https://server-qr.vercel.app/api/marcas'),
+    fetch('https://server-qr.vercel.app/api/tipos')
 
   ]);
-  const [usuarios/* , departamentos, cargos, modelos, marcas, tipos */] = await Promise.all([
+  const [usuarios , departamentos, cargos, modelos, marcas, tipos ] = await Promise.all([
     usuariosRes.json(), 
-/*     departamentosRes.json(),
+    departamentosRes.json(),
     cargosRes.json(),
     modelosRes.json(),
     marcasRes.json(),
-    tiposRes.json() */
+    tiposRes.json() 
   ]);
-  return { props: { usuarios/* , departamentos, cargos, modelos, marcas, tipos */} };
+  return { props: { usuarios, departamentos, cargos, modelos, marcas, tipos} };
 }
