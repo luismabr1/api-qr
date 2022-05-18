@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch, faThumbsUp, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 const FormCargos = (props) =>{
+  console.log(props)
 const listaDepartamentos = props.departamentos
   const [nombre,setNombre] = useState("");
   const [cargo, setCargo] = useState("")

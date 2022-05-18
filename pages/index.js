@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useMemo } from "react";
 import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
 import QR from '../components/QReader'
@@ -6,17 +7,12 @@ import LogoModo from '../components/Logo.js'
 
 
 
-const Home = ( props ) => {
-  const usuarios= props.usuarios
-  const cargos=props.cargos
-  const departamentos = props.departamentos
-  const modelos = props.modelos
-  const marcas = props.marcas
-  const tipos = props.tipos
-
+const Home = () => {
+  const qrRender = useMemo(()=>{
+    return <QR/>
+  })
   return (
     <>
-
       <Head>
         <title>MoDo QR</title>
         <link rel="icon" href="/favicon.ico" />
@@ -25,16 +21,8 @@ const Home = ( props ) => {
       <AppLayout>
         <section>
 
-            <LogoModo />
-
-            <QR
-              usuarios={usuarios}
-              cargos={cargos}
-              departamentos={departamentos}
-              modelos={modelos}
-              marcas={marcas}
-              tipos={tipos} 
-            />
+            <LogoModo  /> 
+            {qrRender}
 
         </section>
       </AppLayout>
@@ -68,24 +56,3 @@ const Home = ( props ) => {
 }
 
 export default Home;
-
-export async function getStaticProps() {
-  const [usuariosRes , departamentosRes, cargosRes, modelosRes, marcasRes, tiposRes ] = await Promise.all([
-    fetch('https://server-qr.vercel.app/api/user'), 
-    fetch('https://server-qr.vercel.app/api/departamentos'),
-    fetch('https://server-qr.vercel.app/api/cargos'),
-    fetch('https://server-qr.vercel.app/api/modelos'),
-    fetch('https://server-qr.vercel.app/api/marcas'),
-    fetch('https://server-qr.vercel.app/api/tipos')
-
-  ]);
-  const [usuarios , departamentos, cargos, modelos, marcas, tipos ] = await Promise.all([
-    usuariosRes.json(), 
-    departamentosRes.json(),
-    cargosRes.json(),
-    modelosRes.json(),
-    marcasRes.json(),
-    tiposRes.json() 
-  ]);
-  return { props: { usuarios, departamentos, cargos, modelos, marcas, tipos} };
-}

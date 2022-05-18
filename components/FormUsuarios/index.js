@@ -4,16 +4,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch, faThumbsUp, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 const FormUsuarios = (props) =>{
+    
     const equipos = props.equipos
-/*     const departamentos = props.departamentos
-    const cargos=props.cargos */
+    const departamentos = props.departamentos
+    const cargos=props.cargos 
   const [nombre,setNombre] = useState("");
   const [apellido,setApellido] = useState("");
   const [cedula,setCedula] = useState("");
   const [sexo,setSexo] = useState("");
-/*   const [departamento,setDepartamento] = useState(null); */
+  const [departamento,setDepartamento] = useState([]); 
   const [equipo,setEquipo] = useState([]);
-/*   const [cargo,setCargo] = useState(null); */
+  const [cargo,setCargo] = useState(null); 
   const [state, setState] = useState('idle');
 
 
@@ -56,10 +57,9 @@ const FormUsuarios = (props) =>{
                 <input className="inputText" type="number" onChange={(e)=>{
                     setSexo(e.target.value)
                 }}/>
-                <label>departamento: </label>
-              {/*   <div className="caja">
+ {/*                <label>departamento: </label>
+           <div className="caja">
                     <select name="select" onChange={e => setDepartamento(e.target.value)} >
-                    
                         {departamentos.map(department => {
                                     return(
                                         <option key={department.id} value={department.id}>{department.nombre}</option>
@@ -68,12 +68,12 @@ const FormUsuarios = (props) =>{
                         )}
 
                     </select>
-                </div> */}
+                </div>  */}
                 <label>Equipo: </label>
                 <div className="caja">
                     <select name="select" onChange={e => setEquipo(e.target.value)} >
                     
-                        {equipos.body.map(equipo => {
+                        {equipos.map(equipo => {
                             console.log(equipo)
                                     return(
                                         <option key={equipo.id} value={equipo.id}>{equipo.serial}</option>
@@ -83,7 +83,7 @@ const FormUsuarios = (props) =>{
 
                     </select>
                 </div>
-                {/* <label>Cargo: </label>
+               <label>Cargo: </label>
                 <div className="caja">
                     <select name="select" onChange={e => setCargo(e.target.value)}>
                         {cargos.map( cargo => {
@@ -93,7 +93,7 @@ const FormUsuarios = (props) =>{
                                 }   
                         )}
                     </select>
-                </div> */}
+                </div> 
 
                 <SubmitButton
                     buttonState={state}

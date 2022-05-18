@@ -77,8 +77,6 @@ const FormTipos = (props) =>{
           height={null}
           animation={true}
         />
-{/*                 <Button onClick={handleDepartamentos} name="Submit Departamentos"/> */}
-                {/* <button onClick={handleDepartamentos}>Submit Departamentos</button> */}
             </div>
           </div>
     </div>

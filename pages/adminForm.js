@@ -1,27 +1,28 @@
+
 import { colors } from '../styles/theme'
 import FormLayout from '../components/FormLayout'
 import SelectForm from '../components/SelectForm'
 
 
+
 const Home = (props) => {
   /* manten el props fuera de llaves */
-  console.log(props.usuarios)
-   const users=props.usuarios
-   console.log(users)
-   const equipos=props.equipos
-   const cargos=props.cargos 
-/*   const departamentos=props.departamentos
-   const registros=props.registros 
-   const tipos=props.tipos
-   const modelos=props.modelos 
-   const marcas=props.marcas */
+  const users=props.usuarios.body
+  console.log(users)
+   const equipos=props.equipos.body
+   const cargos=props.cargos.body
+   const departamentos=props.departamentos.body
+   const registros=props.registros.body
+   const tipos=props.tipos.body
+   const modelos=props.modelos.body
+   const marcas=props.marcas.body
 
   return (
     <>
       <FormLayout
           users={users}
           equipos={equipos}
-/*          departamentos={departamentos}*/
+          departamentos={departamentos}
           cargos={cargos} 
       >
 
@@ -29,11 +30,11 @@ const Home = (props) => {
           users={users}
           equipos={equipos}
           cargos={cargos} 
-/*          departamentos={departamentos}
+          departamentos={departamentos}
           registros={registros}
           marcas={marcas}
           modelos={modelos}
-          tipos={tipos} */
+          tipos={tipos} 
         />
       </FormLayout>
 
@@ -70,14 +71,14 @@ const Home = (props) => {
   const [usuariosRes, equiposRes, cargosRes, departamentosRes,  registrosRes, marcasRes, modelosRes, tiposRes ] = await Promise.all([
     fetch('https://server-qr.vercel.app/api/user'), 
     fetch('https://server-qr.vercel.app/api/equipos'),
+    fetch('https://server-qr.vercel.app/api/cargos'),
     fetch('https://server-qr.vercel.app/api/departamentos'),
     fetch('https://server-qr.vercel.app/api/registros'),
     fetch('https://server-qr.vercel.app/api/marcas'),
     fetch('https://server-qr.vercel.app/api/modelos'),
     fetch('https://server-qr.vercel.app/api/tipos'),
-    fetch('https://server-qr.vercel.app/api/cargos') 
   ]);
-  const [usuarios, equipos, cargos,, departamentos,  registros, marcas, modelos, tipos] = await Promise.all([
+  const [usuarios, equipos, cargos, departamentos, registros, marcas, modelos, tipos] = await Promise.all([
     usuariosRes.json(), 
     equiposRes.json(),
     cargosRes.json(),
@@ -87,7 +88,7 @@ const Home = (props) => {
     modelosRes.json(),
     tiposRes.json() 
   ]);
-  return { props: { usuarios, equipos, cargos, departamentos,  registros, marcas, modelos, tipos } };
+  return { props: { usuarios, equipos, cargos, departamentos, registros, marcas, modelos, tipos } };
 }
 
 

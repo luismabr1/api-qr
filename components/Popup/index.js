@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import reactDom from 'react-dom';
 /* import Popup from 'reactjs-popup'; */
 import 'reactjs-popup/dist/index.css';
@@ -17,9 +18,9 @@ const Modal = ({data, show, onClose, children}) => {
 
 
   const handleClose = (e) => {
-    e.preventDefault()
-    window.location.replace('/');
+/*     e.preventDefault() */
     onClose()
+    window.location.replace('/');
     if(data){
       const requestOptions = {
         method: 'POST',
@@ -40,9 +41,11 @@ const Modal = ({data, show, onClose, children}) => {
       <div className={styles.modal}>
         <div className={styles.body}>{children}</div>
         <div className={styles.header}>
-            <a href="/" onClick={handleClose}>
-              <button className={styles.btn}>Registrar</button>
-            </a>
+            <Link href="/" >
+                <button onClick={handleClose} className={styles.btn}>  
+                  <a>registrar</a> 
+                </button>
+            </Link>
         </div>
       </div>
     </div>

@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch, faThumbsUp, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 const FormEquipos = (props) =>{
-/*     const listaModelos = props.modelos
-    const listaMarcas = props.marcas */
+    const listaModelos = props.modelos
+    const listaMarcas = props.marcas 
     const listaUsuarios = props.usuarios
-/*     const listaTipos = props.tipos */
+     const listaTipos = props.tipos 
 
   const [tipo,setTipo] = useState([]);
   const [usuario,setUsuario] = useState([]);
@@ -45,7 +45,7 @@ const FormEquipos = (props) =>{
                 <div className="caja">
                     <select name="select" onChange={e => setUsuario(e.target.value)}>
                         <option key={0} defaultValue >--------Inserte nombre----------</option>
-                        {listaUsuarios.body.map( user => {
+                        {listaUsuarios.map( user => {
                             console.log(user)
                                     return(
                                         <option key={user.id}value={user.id}>{user.nombre}</option>
@@ -55,7 +55,7 @@ const FormEquipos = (props) =>{
                     </select>
                 </div>
 
-                {/* <label>Marca: </label>
+                 <label>Marca: </label>
                 <div className="caja">
                     <select name="select" onChange={e => setMarca(e.target.value)}>
                         {listaMarcas.map( marca => {
@@ -66,8 +66,8 @@ const FormEquipos = (props) =>{
                                 }   
                         )}
                     </select>
-                </div> */}
-             {/*    <label>Modelo: </label>
+                </div> 
+               <label>Modelo: </label>
                 <div className="caja">
                     <select name="select" onChange={e => setModelo(e.target.value)} >  
                         {listaModelos.map(modelo => {
@@ -79,12 +79,12 @@ const FormEquipos = (props) =>{
                         )}
 
                     </select>
-                </div> */}
-               {/*  <label>Serial </label>
+                </div> 
+                 <label>Serial </label>
                 <input className="inputText" type="text" onChange={(e)=>{
                     setSerial(e.target.value)
-                }}/> */}
-                {/* <label>Tipo: </label>
+                }}/> 
+                 <label>Tipo: </label>
                 <div className="caja">
                     <select name="select" onChange={e => setTipo(e.target.value)}>
                         {listaTipos.map( tipo => {
@@ -95,7 +95,7 @@ const FormEquipos = (props) =>{
                                 }   
                         )}
                     </select>
-                </div> */}
+                </div> 
 
                 
                 <SubmitButton

@@ -1,6 +1,9 @@
 @font-face {
   font-family: "Kastelov";
-  src: url("./fonts/Kastelov\ -\ Axiforma\ ExtraBold.otf");
+  font-style: normal;
+  font-weight: 400;
+  src: local('Pacifico Regular'), local('Pacifico-Regular'), url("./fonts/Kastelov\ -\ Axiforma\ ExtraBold.otf");
+  font-display: swap;
 }
 
 .container {
