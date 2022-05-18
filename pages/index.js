@@ -69,7 +69,7 @@ const Home = ( props ) => {
 export default Home;
 
 export async function getStaticProps() {
-  const [usuariosRes/* , departamentosRes, cargosRes, modelosRes, marcasRes, tiposRes */] = await Promise.all([
+  const [usuariosRes , departamentosRes, cargosRes, modelosRes, marcasRes, tiposRes ] = await Promise.all([
     fetch('https://server-qr.vercel.app/api/user'), 
     fetch('https://server-qr.vercel.app/api/departamentos'),
     fetch('https://server-qr.vercel.app/api/cargos'),

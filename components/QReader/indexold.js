@@ -30,7 +30,6 @@ const QR = () => {
                 setShowModal(true)
                 setVisible(true)
                 console.log("DATA STORED");
-                
               })
               .catch((error) => {
                 setError('Valor no encontrado: ' + error);

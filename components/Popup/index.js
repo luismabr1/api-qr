@@ -6,6 +6,7 @@ import styles from "./index.module.css"
 
 const Modal = ({data, show, onClose, children}) => {
   const [isBrowser, setIsBrowser] = useState(false)
+
   const equipo = data
 
 
@@ -27,6 +28,8 @@ const Modal = ({data, show, onClose, children}) => {
         fetch('https://server-qr.vercel.app/api/registros', requestOptions)
         .then(response => response.json())
         .then(data => console.log("Exito"));
+
+
     }
 
   }
@@ -35,7 +38,7 @@ const Modal = ({data, show, onClose, children}) => {
     <div className={styles.overlay}>
       <div className={styles.modal}>
         <div className={styles.header}>
-            <a href="#" onClick={handleClose}>
+            <a href="/" onClick={handleClose}>
               <button className='btn'>Registrar</button>
             </a>
         </div>
