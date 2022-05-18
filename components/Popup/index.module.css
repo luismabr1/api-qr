@@ -5,12 +5,21 @@
     border-radius: 15px;
     padding: 40px;
     z-index: 100;
-    transition: all 5s ease-in-out;
-    transition: opacity 500ms;
+    transition: all 0.3s ease-in-out;
 }
+.btn {
+    background-color: rgb(148, 146, 146); /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
 
 .modal:hover {
-    transform: scale(1.10);
+    transform: scale(1.05);
    }
 
 /* From uiverse.io by @Giuxpro */

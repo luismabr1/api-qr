@@ -5,6 +5,7 @@ import QR from '../components/QReader'
 import LogoModo from '../components/Logo.js'
 
 
+
 const Home = ( props ) => {
   const usuarios= props.usuarios
   const cargos=props.cargos

@@ -69,13 +69,13 @@ const QR = () => {
             /> 
             
             {result &&
-             <Modal data={result.id} show={showModal} onClose={()=> setShowModal(false)}>
+             <Modal data={result.equipo_id} show={showModal} onClose={()=> setShowModal(false)}>
                 {console.log(result)}
               <h1>NOMBRE</h1>
                
               
 
-              <div>
+              <div className='lista'>
                       <ul>
                       <span>MARCA</span>
                         <li>{result.marca}</li>
