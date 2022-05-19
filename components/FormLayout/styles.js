@@ -23,19 +23,19 @@ export const globalStyles = css.global`
 `
 
 export default css`
-  div {
-    display: grid;
-    height: 100vh;
-    place-items: center;
+  .formularios {
+    margin: 30px
   }
-  main {
+
+  .mini-list{
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, .1);
-    height: 100%;
+    height: 40vh;
     width: 100%;
     overflow: scroll;
   }
+
   @media (min-width: ${breakpoints.mobile}) {
     main {
       height: 90vh;

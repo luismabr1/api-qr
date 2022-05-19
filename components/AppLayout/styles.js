@@ -40,4 +40,20 @@ export default css`
       height: 80vh;
       width: ${breakpoints.mobile};
     }
-  }`
+  }
+  @media (min-width: ${breakpoints.tabletLarge}) {
+    main {
+      height: 80vh;
+      width: ${breakpoints.tabletLarge};
+    }
+  }
+
+  @media (min-width: ${breakpoints.tabletLandscape}) {
+    main {
+      height: 80vh;
+      width: ${breakpoints.tabletLandscape};
+    }
+  }
+  
+  
+  `

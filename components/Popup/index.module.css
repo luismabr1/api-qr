@@ -1,12 +1,71 @@
+
 .modal{
     background: #fff;
-    width: auto;
-    height: auto;
+    width: 70vw;
+    height: 80vh;
     border-radius: 15px;
-    padding: 40px;
+    padding: 20px;
     z-index: 100;
     transition: all 0.3s ease-in-out;
+    font-family: 'Roboto Flex', sans-serif;
+    overflow-y: scroll;
+    text-align: center;
+    text-decoration: none!important;
+
 }
+
+.modal ul li{
+    text-decoration: none!important;
+
+}
+
+@media (min-width: 520px) {
+    .modal {
+        background: #fff;
+        border-radius: 15px;
+        padding: 40px;
+        z-index: 100;
+        transition: all 0.3s ease-in-out;
+        font-family: 'Roboto Flex', sans-serif;
+        overflow-y: scroll;
+      height: 50vh;
+      width: 520px;
+      text-decoration: none!important;
+
+    }
+  }
+
+  @media (min-width: 600px) {
+    .modal {
+        background: #fff;
+        border-radius: 15px;
+        padding: 40px;
+        z-index: 100;
+        transition: all 0.3s ease-in-out;
+        font-family: 'Roboto Flex', sans-serif;
+        overflow-y: scroll;
+      height: 60vh;
+      width: 600px;
+      text-decoration: none!important;
+
+    }
+  }
+
+  @media (min-width: 768px) {
+    .modal {
+        background: #fff;
+        border-radius: 15px;
+        padding: 40px;
+        z-index: 100;
+        transition: all 0.3s ease-in-out;
+        font-family: 'Roboto Flex', sans-serif;
+        overflow-y: scroll;
+      height: 80vh;
+      width: 768px;
+      text-decoration: none!important;
+    }
+  }
+
 .btn {
     background-color: rgb(148, 146, 146); /* Green */
     border: none;
@@ -42,7 +101,12 @@
     font-size: 25px;
 }
 .body{
-    padding-top: 10px;
+    padding-top: 10px;   
+}
+
+
+.body ul{
+text-decoration: none;
 }
 .overlay {
     position: absolute;

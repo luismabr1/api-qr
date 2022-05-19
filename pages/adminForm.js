@@ -7,8 +7,8 @@ import SelectForm from '../components/SelectForm'
 
 const Home = (props) => {
   /* manten el props fuera de llaves */
+  console.log(`Items ${props.usuarios.body}`)
   const users=props.usuarios.body
-  console.log(users)
    const equipos=props.equipos.body
    const cargos=props.cargos.body
    const departamentos=props.departamentos.body
@@ -25,7 +25,6 @@ const Home = (props) => {
           departamentos={departamentos}
           cargos={cargos} 
       >
-
         <SelectForm           
           users={users}
           equipos={equipos}
@@ -37,6 +36,7 @@ const Home = (props) => {
           tipos={tipos} 
         />
       </FormLayout>
+
 
       <style jsx>{`
         img {

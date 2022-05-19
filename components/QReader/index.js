@@ -17,13 +17,6 @@ const QR = () => {
           const url = 'https://server-qr.vercel.app/api/equipos/info/' + data
           console.log(url)
            fetch(url, {mode:'cors'})
-         /*.then(response => response.json())
-          .then(data => {
-            setResult(data.body)
-            setShowModal(true)
-            setVisible(true)
-            console.log("DATA STORED", data.body)
-          }) */
           .then((response) => {
             if(!response){
               throw new Error(response.status);
@@ -71,31 +64,25 @@ const QR = () => {
             {result &&
              <Modal data={result.equipo_id} show={showModal} onClose={()=> setShowModal(false)}>
                 {console.log(result)}
-              <h1>NOMBRE</h1>
-               
-              
-
+              <h1>{result.usuario}</h1>
               <div className='lista'>
-                      <ul>
-                      <span>MARCA</span>
+                  <ul>
+                    <h3>MARCA</h3>
                         <li>{result.marca}</li>
 
-                        <span>MODELO</span>
+                        <h3>MODELO</h3>
                         <li>{result.modelo}</li>
 
-                        <span>SERIAL</span>
+                        <h3>SERIAL</h3>
                         <li>{result.serial}</li>
 
-                        <span>ASIGNADO A:</span>
-                        <li>{result.usuario}</li>
-
-                        <span>DEPARTAMENTO</span>
+                        <h3>DEPARTAMENTO</h3>
                         <li>{result.departamento}</li>
 
-                        <span>CARGO</span>
+                        <h3>CARGO</h3>
                         <li>{result.cargo}</li>
 
-                        <span>TIPO</span>
+                        <h3>TIPO DE DISPOSITIVO</h3>
                         <li>{result.tipo}</li>
     
               </ul>

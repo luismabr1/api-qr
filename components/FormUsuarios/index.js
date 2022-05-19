@@ -25,7 +25,7 @@ const FormUsuarios = (props) =>{
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({nombre: nombre, apellido: apellido, cedula: cedula, sexo: sexo, departamento: departamento, equipo: equipo, cargo:cargo})
       };
-      fetch('https://api-qr-node.vercel.app/api/user', requestOptions)
+      fetch('https://server-qr.vercel.app/api/user', requestOptions)
           .then(response => response.json())
           .then(data => setEquipo(data.id));
           
@@ -57,7 +57,7 @@ const FormUsuarios = (props) =>{
                 <input className="inputText" type="number" onChange={(e)=>{
                     setSexo(e.target.value)
                 }}/>
- {/*                <label>departamento: </label>
+              <label>departamento: </label>
            <div className="caja">
                     <select name="select" onChange={e => setDepartamento(e.target.value)} >
                         {departamentos.map(department => {
@@ -68,13 +68,12 @@ const FormUsuarios = (props) =>{
                         )}
 
                     </select>
-                </div>  */}
+                </div>  
                 <label>Equipo: </label>
                 <div className="caja">
                     <select name="select" onChange={e => setEquipo(e.target.value)} >
                     
                         {equipos.map(equipo => {
-                            console.log(equipo)
                                     return(
                                         <option key={equipo.id} value={equipo.id}>{equipo.serial}</option>
                                     )

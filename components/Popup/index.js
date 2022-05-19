@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import reactDom from 'react-dom';
-/* import Popup from 'reactjs-popup'; */
+import Popup from 'reactjs-popup'; 
 import 'reactjs-popup/dist/index.css';
 import styles from "./index.module.css"
 
@@ -18,7 +18,7 @@ const Modal = ({data, show, onClose, children}) => {
 
 
   const handleClose = (e) => {
-/*     e.preventDefault() */
+     e.preventDefault() 
     onClose()
     window.location.replace('/');
     if(data){

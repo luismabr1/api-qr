@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { useState } from 'react';
+import style from './index.module.css'
 
 
 const ListasUsuarios = (props) => {
-    const [lists, setLists] = useState(props.usuarios)
+    const [lists, setLists] = useState(props.users)
     const [serial, setSerial] = useState([])
     const [show, setShow]= useState(false)
     const users = props.users
@@ -27,6 +28,8 @@ const ListasUsuarios = (props) => {
         setLists(cargos)
         setShow(true)
         }
+
+
     return (
         <>
             <nav>
@@ -35,16 +38,19 @@ const ListasUsuarios = (props) => {
                 <label onClick={handleDepartamentos}><Link href="#">Departamentos</Link></label>
                 <label onClick={handleCargos}><Link href="#">Cargos</Link></label>
             </nav>
-            <div className="mini-list">
+
+
+            
+            <div className={style.miniList}>
                 {show &&
                     <ul>
-                        {lists.map(list => {
-                            return(
-                                <li key={list.id}> {list.nombre} </li>
-                            )
-                        }   
-                )}         
-                    </ul>  
+                        {
+                            lists.map(list => {
+                                return <li key={list.id}>{list.nombre}</li>  
+                                 
+                        })
+                        }
+                    </ul>
                 }
 
                 {!show &&
@@ -59,9 +65,9 @@ const ListasUsuarios = (props) => {
                 </ul>
                 
                 }
-            <main>
-                {props.children}
-            </main>
+                    <main>
+                        {props.children}
+                    </main>
 
             </div>
         </>
@@ -70,5 +76,3 @@ const ListasUsuarios = (props) => {
 
 
 export default ListasUsuarios;
-
-
