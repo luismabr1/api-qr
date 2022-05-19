@@ -18,7 +18,7 @@ const SelectForm = (props) =>{
     const registros=props.registros
     const tipos=props.tipos 
 
-  const [form, setForm] = useState('USUARIOS');
+  const [form, setForm] = useState();
   const Forms = [{
     id: '1',
     name: 'DEPARTAMENTOS'
@@ -91,6 +91,7 @@ const FormRender = ( {form} ) => {
           <h1>Elegir Formulario</h1>
                 <div className="caja">
                     <select name="select" onChange={e => setForm(e.target.value)} >
+                      <option selected>--Escoja el Formulario--</option>
                         {Forms.map(form => {
                                     return(
                                         <option key={form.id} value={form.name}>{form.name}</option>
