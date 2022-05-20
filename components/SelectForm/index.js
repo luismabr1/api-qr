@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import FormCargos from "../FormCargos";
 import FormDepartamentos from "../FormDepartamentos";
 import FormUsuarios from "../FormUsuarios";
@@ -88,6 +88,7 @@ const FormRender = ( {form} ) => {
 
   return(
       <>
+        <main className="container">
           <h1>Elegir Formulario</h1>
                 <div className="caja">
                     <select name="select" onChange={e => setForm(e.target.value)} >
@@ -101,7 +102,8 @@ const FormRender = ( {form} ) => {
 
                     </select>
                     
-                    </div>
+                </div>
+        </main>
 
 
                     <FormRender form={form} />
