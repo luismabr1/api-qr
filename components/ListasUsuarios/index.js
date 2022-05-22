@@ -29,6 +29,22 @@ const ListasUsuarios = (props) => {
         setShow(true)
         }
 
+        const handleLink = (id) => {
+            setState('loading');
+              const requestOptions = {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ usuario_id:usuario, marca_id:marca, modelo_id:modelo, serial:serial, tipo_id:tipo})
+              };
+              fetch('https://api-qr-node.vercel.app/api/user', requestOptions)
+                  .then(response => response.json())
+                  .then(data => setEquipo(data.id));
+        
+                  setTimeout(() => {
+                    setState('success');
+                  }, 2000);
+          }
+
 
     return (
         <>
@@ -41,16 +57,23 @@ const ListasUsuarios = (props) => {
 
 
             
-            <div className={style.miniList}>
+            <div className={style.ContainerMiniList}>
                 {show &&
-                    <ul>
+                    <div className={style.Lista}>
                         {
                             lists.map(list => {
-                                return <li key={list.id}>{list.nombre}</li>  
+                                return(
+                                    <div className={style.ItemLista}>
+                                        <span key={list.id}>{list.nombre}</span> 
+                                        <span><a href='#' onClik={handleLink(list.id)}>Edit</a></span>
+                                        <span><a href="#" onClik={handleLink(list.id)}>Eliminar</a></span>
+                                    </div>
+                                )  
                                  
                         })
                         }
-                    </ul>
+                    </div>
+
                 }
 
                 {!show &&

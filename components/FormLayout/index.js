@@ -8,7 +8,8 @@ export default function FormLayout ({children, users, equipos, departamentos, ca
       <Head>
         <title>MoDo QR</title>
       </Head>
-      <div className='formularios'>
+      <div>
+        <main>
           <ListasUsuarios
                 users={users}
                 equipos={equipos}
@@ -16,6 +17,8 @@ export default function FormLayout ({children, users, equipos, departamentos, ca
                 cargos={cargos}
                 />
         {children}
+
+        </main>
 
       </div>
       <style jsx>{styles}</style>

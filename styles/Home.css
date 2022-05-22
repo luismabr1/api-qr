@@ -121,24 +121,28 @@
   }
 }
 
+select {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  height: 40px;
+  padding: 5px;
+  width: 250px;
+}
+select:focus{ outline: none;}
 
-/* FORMS */
-
-.uploadPost{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+header {
   align-items: center;
-  height: 500px;
-  width: 500px;
-  border: 2px solid coral;
+  background: #ffffffaa;
+  backdrop-filter: blur(5px);
+  border-bottom: 1px solid #eee;
+  height: 49px;
+  display: flex;
+  position: sticky;
+  top: 0;
+  width: 100%;
 }
 
-.CreatePost {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh -80px);
-}
+
 
 

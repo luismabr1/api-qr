@@ -6,6 +6,7 @@ import FormEquipos from "../FormEquipos";
 import FormTipos from "../FormTipos";
 import FormMarcas from "../FormMarcas"
 import FormModelos from "../FormModelos" 
+import style from "./index.module.css"
 
 const SelectForm = (props) =>{
 
@@ -88,10 +89,10 @@ const FormRender = ( {form} ) => {
 
   return(
       <>
-        <main className="container">
+        <main className={style.container}>
           <h1>Elegir Formulario</h1>
-                <div className="caja">
-                    <select name="select" onChange={e => setForm(e.target.value)} >
+                <div className={style.caja}>
+                    <select name={style.select} onChange={e => setForm(e.target.value)} >
                       <option selected>--Escoja el Formulario--</option>
                         {Forms.map(form => {
                                     return(

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import SubmitButton from 'reactive-button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch, faThumbsUp, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
+import style from './index.module.css'
 
 const FormEquipos = (props) =>{
     const listaModelos = props.modelos
