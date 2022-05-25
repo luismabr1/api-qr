@@ -1,9 +1,17 @@
 import Link from 'next/link'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import ModalEdit from '../ModalEdit';
+import ModalRemove from '../ModalRemove';
+
+
 import style from './index.module.css'
 
 
 const ListasUsuarios = (props) => {
+    const [form, setForm] = useState();
+    const [showModal, setShowModal] = useState(false)
+    const [remove, setRemove] = useState()
+    const [edit, setEdit] = useState()
     const [lists, setLists] = useState(props.users)
     const [serial, setSerial] = useState([])
     const [show, setShow]= useState(false)
@@ -11,40 +19,42 @@ const ListasUsuarios = (props) => {
     const equipos = props.equipos
     const departamentos = props.departamentos
     const cargos = props.cargos
- 
-    const handleUsers = () =>{
-         setLists(users)
-         setShow(true)
+    const marcas = props.cargos
+    const modelos=props.modelos
+    const tipos = props.cargos
+    console.log('este user esta solo',equipos)
+
+    useEffect(() => {
+        if(edit || remove){
+            setShowModal(true)
         }
+        console.log(`Editar ${edit} Eliminar ${remove} y el usuario a editar ${users[edit]}`)
+      }, [edit, remove])
+
+
+    const handleUsers = () =>{
+        setLists(users)
+        setShow(true)
+        setForm('USUARIOS')
+    }
     const handleEquipos = () =>{
         setSerial(equipos)
         setShow(false)
-        }
+        setForm('EQUIPOS')
+
+    }
     const handleDepartamentos = () =>{
         setLists(departamentos)
         setShow(true)
-           }
+        setForm('DEPARTAMENTOS')
+
+    }
     const handleCargos = () =>{
         setLists(cargos)
         setShow(true)
-        }
+        setForm('CARGOS')
 
-        const handleLink = (id) => {
-            setState('loading');
-              const requestOptions = {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ usuario_id:usuario, marca_id:marca, modelo_id:modelo, serial:serial, tipo_id:tipo})
-              };
-              fetch('https://api-qr-node.vercel.app/api/user', requestOptions)
-                  .then(response => response.json())
-                  .then(data => setEquipo(data.id));
-        
-                  setTimeout(() => {
-                    setState('success');
-                  }, 2000);
-          }
-
+    }
 
     return (
         <>
@@ -63,10 +73,12 @@ const ListasUsuarios = (props) => {
                         {
                             lists.map(list => {
                                 return(
-                                    <div className={style.ItemLista}>
-                                        <span key={list.id}>{list.nombre}</span> 
-                                        <span><a href='#' onClik={handleLink(list.id)}>Edit</a></span>
-                                        <span><a href="#" onClik={handleLink(list.id)}>Eliminar</a></span>
+                                    <div className={style.ContainerItemLista}>
+                                        <div className={style.ContainerDataList}>
+                                            <span key={list.id}>{list.nombre}</span> 
+                                        </div>
+                                        <label className={style.ItemLista} onClick={()=> setEdit(list.id)}><Link href="#">Edit</Link></label>
+                                        <label className={style.ItemLista} onClick={()=> setRemove(list.id)}><Link href="#">Eliminar</Link></label>
                                     </div>
                                 )  
                                  
@@ -78,16 +90,34 @@ const ListasUsuarios = (props) => {
 
                 {!show &&
                 
-                <ul>
+                <div className={style.Lista}>
                     {serial.map(list => {
                             return(
-                                <li key={list.id}> {list.serial} </li>
+                                    <div className={style.ContainerItemLista}>
+                                        <div className={style.ContainerDataList}>
+                                            <span key={list.id}>{list.serial}</span> 
+                                        </div>
+                                        <label className={style.ItemLista} onClick={()=> setEdit(list.id)}><Link href="#">Edit</Link></label>
+                                        <label className={style.ItemLista} onClick={()=> setRemove(list.id)}><Link href="#">Eliminar</Link></label>
+                                    </div>
                             )
                         }   
                     )}         
-                </ul>
+                </div>
                 
                 }
+
+                {edit &&
+                    <ModalEdit data={edit} show={showModal} users={users} equipos={equipos} departamentos={departamentos} cargos={cargos} marcas={marcas} modelos={modelos} tipos={tipos} form={form} onClose={()=> setShowModal(false)}>
+                    </ModalEdit> 
+                }
+
+                {remove &&
+                <ModalRemove data={remove} show={showModal} form={form} onClose={()=> setShowModal(false)}>
+                    <h1>usuario eliminado</h1>
+                </ModalRemove>
+                }
+
                     <main>
                         {props.children}
                     </main>

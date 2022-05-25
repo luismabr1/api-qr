@@ -4,8 +4,6 @@ import AppLayout from '../components/AppLayout'
 import { colors } from '../styles/theme'
 import QR from '../components/QReader'
 import LogoModo from '../components/Logo.js'
-import Login from '../components/Login'
-
 
 
 const Home = () => {
@@ -24,7 +22,6 @@ const Home = () => {
 
             <LogoModo  /> 
             {qrRender}
-            <Login></Login>
 
         </section>
       </AppLayout>

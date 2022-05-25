@@ -2,7 +2,7 @@ import ListasUsuarios from '../ListasUsuarios'
 import Head from 'next/head'
 import styles, {globalStyles} from './styles'
 
-export default function FormLayout ({children, users, equipos, departamentos, cargos}) {
+export default function FormLayout ({children, users, equipos, departamentos, cargos, tipos, marcas, modelos}) {
   return (
     <>
       <Head>
@@ -15,6 +15,9 @@ export default function FormLayout ({children, users, equipos, departamentos, ca
                 equipos={equipos}
                 departamentos={departamentos}
                 cargos={cargos}
+                marcas={marcas}
+                modelos={modelos}
+                tipos={tipos}
                 />
         {children}
 

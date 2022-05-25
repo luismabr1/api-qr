@@ -4,15 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch, faThumbsUp, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 const FormUsuarios = (props) =>{
-    
     const equipos = props.equipos
     const departamentos = props.departamentos
     const cargos=props.cargos 
-  const [nombre,setNombre] = useState("");
-  const [apellido,setApellido] = useState("");
-  const [cedula,setCedula] = useState("");
-  const [sexo,setSexo] = useState("");
-  const [departamento,setDepartamento] = useState([]); 
+  const [nombre,setNombre] = useState(props.editName);
+  const [apellido,setApellido] = useState(props.editApellido);
+  const [cedula,setCedula] = useState(props.editCedula);
+  const [sexo,setSexo] = useState(props.editSexo);
+  const [estado,setEstado] = useState(props.editEstado);
+  const [departamento,setDepartamento] = useState(props.editDepartamento || ''); 
   const [equipo,setEquipo] = useState([]);
   const [cargo,setCargo] = useState(null); 
   const [state, setState] = useState('idle');
@@ -23,9 +23,9 @@ const FormUsuarios = (props) =>{
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({nombre: nombre, apellido: apellido, cedula: cedula, sexo: sexo, departamento: departamento, equipo: equipo, cargo:cargo})
+          body: JSON.stringify({nombre: nombre, apellido: apellido, cedula: cedula, sexo: sexo, departamento_id: departamento, equipo_id: equipo, cargo_id:cargo})
       };
-      fetch('https://server-qr.vercel.app/api/user', requestOptions)
+      fetch('https://server-qr.vercel.app/api/usuarios', requestOptions)
           .then(response => response.json())
           .then(data => setEquipo(data.id));
           
@@ -42,24 +42,29 @@ const FormUsuarios = (props) =>{
           <div className="CreatePost">
             <div className="uploadPost">
                 <label>nombre: </label>
-                <input className="inputText" type="text" onChange={(e)=> {
+                <input className="inputText" type="text" value={nombre} onChange={(e)=> {
                     setNombre(e.target.value)
                 }}/>
                 <label>apellido: </label>
-                <input className="inputText" type="text" onChange={(e)=>{
+                <input className="inputText" type="text" value={apellido} onChange={(e)=>{
                     setApellido(e.target.value)
                 }}/>
                 <label>cedula: </label>
-                <input className="inputText" type="number" onChange={(e)=>{
+                <input className="inputText" type="text" value={cedula} onChange={(e)=>{
                     setCedula(e.target.value)
                 }}/>
                 <label>Sexo: </label>
-                <input className="inputText" type="number" onChange={(e)=>{
+                <input className="inputText" type="text" value={sexo} onChange={(e)=>{
                     setSexo(e.target.value)
+                }}/>
+                <label>Estado: </label>
+                <input className="inputText" type="text" value={estado} onChange={(e)=>{
+                    setEstado(e.target.value)
                 }}/>
               <label>departamento: </label>
            <div className="caja">
-                    <select name="select" onChange={e => setDepartamento(e.target.value)} >
+                    <select name="select" defaultValue={props.editDepartamento} onChange={e => setDepartamento(e.target.value)} >
+{/*                     <option key={} value={department.id}>{department.nombre}</option> */}
                         {departamentos.map(department => {
                                     return(
                                         <option key={department.id} value={department.id}>{department.nombre}</option>
@@ -71,7 +76,7 @@ const FormUsuarios = (props) =>{
                 </div>  
                 <label>Equipo: </label>
                 <div className="caja">
-                    <select name="select" onChange={e => setEquipo(e.target.value)} >
+                    <select name="select" defaultValue={props.editEquipo} onChange={e => setEquipo(e.target.value)} >
                     
                         {equipos.map(equipo => {
                                     return(
@@ -84,10 +89,10 @@ const FormUsuarios = (props) =>{
                 </div>
                <label>Cargo: </label>
                 <div className="caja">
-                    <select name="select" onChange={e => setCargo(e.target.value)}>
+                    <select name="select" defaultValue={props.editCargo} onChange={e => setCargo(e.target.value)}>
                         {cargos.map( cargo => {
                                     return(
-                                        <option key={cargo.id}value={cargo.id}>{cargo.nombre}</option>
+                                        <option key={cargo.id} value={cargo.id}>{cargo.nombre}</option>
                                     )
                                 }   
                         )}

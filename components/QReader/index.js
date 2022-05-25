@@ -26,7 +26,6 @@ const QR = () => {
             } 
           })
           .then((data) => {
-            console.log(data.body[0])
             setResult(data.body[0])
             setShowModal(true)
             setVisible(true)
@@ -63,7 +62,6 @@ const QR = () => {
             
             {result &&
              <Modal data={result.equipo_id} show={showModal} onClose={()=> setShowModal(false)}>
-                {console.log(result)}
               <h1>{result.usuario}</h1>
               <div className='lista'>
                   <ul>

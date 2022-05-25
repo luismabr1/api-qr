@@ -8,6 +8,7 @@ import { faCircleNotch, faThumbsUp, faCircleExclamation } from '@fortawesome/fre
 const FormDepartamentos = (props) =>{  
   const [departamento,setDepartamento] = useState("");
   const [state, setState] = useState('idle');
+  console.log(`Edit Name ${props.editName}`)
 
   const handleDepartamentos = async (props) => {
       setState('loading');
@@ -36,7 +37,7 @@ const FormDepartamentos = (props) =>{
           <div className={styles.CreatePost}>
             <div className="uploadPost">
                 <label>nombre: </label>
-                <input className={styles.inputText} type="text" value={departamento} onChange={(e)=> {
+                <input className={styles.inputText} type="text" value={props.editName} onChange={(e)=> {
                     setDepartamento(e.target.value)
                 }}/>
 

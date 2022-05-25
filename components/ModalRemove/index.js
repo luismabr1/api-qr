@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react';
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import reactDom from 'react-dom';
+import Popup from 'reactjs-popup'; 
 import 'reactjs-popup/dist/index.css';
 import styles from "./index.module.css"
 
-const Modal = ({data, show, onClose, children}) => {
+const Modal = ({data, show, form, onClose, children}) => {
   const [isBrowser, setIsBrowser] = useState(false)
-  const equipo = data
-
+  const id = data
+  const formMin= form.toLowerCase() 
 
   useEffect(() => {
     setIsBrowser(true)
@@ -22,9 +24,8 @@ const Modal = ({data, show, onClose, children}) => {
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ equipo_id:equipo })
       };
-        fetch('https://server-qr.vercel.app/api/registros', requestOptions)
+        fetch(`https://server-qr.vercel.app/api/${formMin}/${id}`, requestOptions)
         .then(response => response.json())
         .then(data => console.log("Exito"));
         
@@ -40,7 +41,7 @@ const Modal = ({data, show, onClose, children}) => {
         <div className={styles.header}>
             <Link href="/" >
                 <button onClick={handleClose} className={styles.btn}>  
-                  <a>Registrar</a> 
+                  <a>volver</a> 
                 </button>
             </Link>
         </div>

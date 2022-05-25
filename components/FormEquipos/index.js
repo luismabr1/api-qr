@@ -8,13 +8,13 @@ const FormEquipos = (props) =>{
     const listaModelos = props.modelos
     const listaMarcas = props.marcas 
     const listaUsuarios = props.usuarios
-     const listaTipos = props.tipos 
+    const listaTipos = props.tipos 
 
   const [tipo,setTipo] = useState([]);
-  const [usuario,setUsuario] = useState([]);
+  const [usuario,setUsuario] = useState(props.editUser);
   const [modelo,setModelo] = useState([]);
   const [marca,setMarca] = useState([]);
-  const [serial,setSerial] = useState([]);
+  const [serial,setSerial] = useState(props.editSerial);
   const [state, setState] = useState('idle');
 
 
@@ -44,12 +44,12 @@ const FormEquipos = (props) =>{
             <div className="uploadPost">
                 <label>Usuario: </label>
                 <div className="caja">
-                    <select name="select" onChange={e => setUsuario(e.target.value)}>
-                        <option key={0} defaultValue >--------Inserte nombre----------</option>
+                    <select name="select" defaultValue={props.editUser} onChange={e => setUsuario(e.target.value)}>
+
                         {listaUsuarios.map( user => {
                             console.log(user)
                                     return(
-                                        <option key={user.id}value={user.id}>{user.nombre}</option>
+                                        <option key={user.id} value={user.id} /* defaultValue={props.editUser} */>{user.nombre}</option>
                                     )
                                 }   
                         )}
@@ -58,11 +58,13 @@ const FormEquipos = (props) =>{
 
                  <label>Marca: </label>
                 <div className="caja">
-                    <select name="select" onChange={e => setMarca(e.target.value)}>
+                    <select name="select" defaultValue={props.editMarca} onChange={e => setMarca(e.target.value)}>
                         {listaMarcas.map( marca => {
                             console.log(marca)
                                     return(
-                                        <option key={marca.id}value={marca.id}>{marca.nombre}</option>
+
+                                        
+                                        <option key={marca.id} value={marca.id} /* defaultValue={props.editMarca} */>{marca.nombre}</option>
                                     )
                                 }   
                         )}
@@ -70,7 +72,7 @@ const FormEquipos = (props) =>{
                 </div> 
                <label>Modelo: </label>
                 <div className="caja">
-                    <select name="select" onChange={e => setModelo(e.target.value)} >  
+                    <select name="select" defaultValue={props.editModelo} onChange={e => setModelo(e.target.value)} >  
                         {listaModelos.map(modelo => {
                             console.log(modelo)
                                     return(
@@ -82,12 +84,12 @@ const FormEquipos = (props) =>{
                     </select>
                 </div> 
                  <label>Serial </label>
-                <input className="inputText" type="text" onChange={(e)=>{
+                <input className="inputText" value={serial}  type="text" onChange={(e)=>{
                     setSerial(e.target.value)
                 }}/> 
                  <label>Tipo: </label>
                 <div className="caja">
-                    <select name="select" onChange={e => setTipo(e.target.value)}>
+                    <select name="select" defaultValue={props.editTipo} onChange={e => setTipo(e.target.value)}>
                         {listaTipos.map( tipo => {
                             console.log(tipo)
                                     return(

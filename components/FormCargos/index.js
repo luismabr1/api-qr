@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch, faThumbsUp, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
 const FormCargos = (props) =>{
-  console.log(props)
+  console.log(props.editDepartamento)
 const listaDepartamentos = props.departamentos
   const [nombre,setNombre] = useState("");
   const [cargo, setCargo] = useState("")
@@ -35,19 +35,24 @@ const listaDepartamentos = props.departamentos
           <div className="CreatePost">
             <div className="uploadPost">
                 <label>nombre: </label>
-                <input className="inputText" type="text" onChange={(e)=> {
+                <input className="inputText" type="text" value={props.editName} onChange={(e)=> {
                     setNombre(e.target.value)
                 }}/>
 
                 <label>departamento: </label>
                 <div className="caja">
-                    <select name="select" onChange={e => setDepartamento(e.target.value)} >
-                        {listaDepartamentos.map(department => {
+                    <select name="select" defaultValue={props.editDepartamento} onChange={e => setDepartamento(e.target.value)} >
+
+                      {
+                        
+                        listaDepartamentos.map(department => {
                                     return(
-                                        <option key={department.id} value={department.id}>{department.nombre}</option>
+                                      <option key={department.id} value={department.id}>{department.nombre}</option>
                                     )
                                 }   
-                        )}
+                        )
+                        
+                      }
 
                     </select>
                 </div>

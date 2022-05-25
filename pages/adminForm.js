@@ -7,7 +7,7 @@ import SelectForm from '../components/SelectForm'
 
 const Home = (props) => {
   /* manten el props fuera de llaves */
-  console.log(`Items ${props.usuarios.body}`)
+  console.log(`Items ${props.equipos.body}`)
   const users=props.usuarios.body
    const equipos=props.equipos.body
    const cargos=props.cargos.body
@@ -23,7 +23,10 @@ const Home = (props) => {
           users={users}
           equipos={equipos}
           departamentos={departamentos}
-          cargos={cargos} 
+          cargos={cargos}
+          tipos={tipos}
+          marcas={marcas}
+          modelos={modelos}
       >
         <SelectForm           
           users={users}
@@ -69,22 +72,22 @@ const Home = (props) => {
 
  export async function getStaticProps() {
   const [usuariosRes, equiposRes, cargosRes, departamentosRes,  registrosRes, marcasRes, modelosRes, tiposRes ] = await Promise.all([
-/*     fetch('https://server-qr.vercel.app/api/user'), 
+   /*  fetch('https://server-qr.vercel.app/api/usuarios'), 
     fetch('https://server-qr.vercel.app/api/equipos'),
     fetch('https://server-qr.vercel.app/api/cargos'),
     fetch('https://server-qr.vercel.app/api/departamentos'),
     fetch('https://server-qr.vercel.app/api/registros'),
     fetch('https://server-qr.vercel.app/api/marcas'),
     fetch('https://server-qr.vercel.app/api/modelos'),
-    fetch('https://server-qr.vercel.app/api/tipos'), */
-    fetch('http://localhost:3005/api/usuarios'), 
+    fetch('https://server-qr.vercel.app/api/tipos'),  */
+     fetch('http://localhost:3005/api/usuarios'), 
     fetch('http://localhost:3005/api/equipos'),
     fetch('http://localhost:3005/api/cargos'),
     fetch('http://localhost:3005/api/departamentos'),
     fetch('http://localhost:3005/api/registros'),
     fetch('http://localhost:3005/api/marcas'),
     fetch('http://localhost:3005/api/modelos'),
-    fetch('http://localhost:3005/api/tipos'),
+    fetch('http://localhost:3005/api/tipos'), 
   ]);
   const [usuarios, equipos, cargos, departamentos, registros, marcas, modelos, tipos] = await Promise.all([
     usuariosRes.json(), 

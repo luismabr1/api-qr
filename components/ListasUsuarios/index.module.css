@@ -16,26 +16,32 @@
     align-items: center;
     background: #ffffffaa;
     border: 1px solid red;
-    backdrop-filter: blur(10px); 
     border-bottom: 1px solid #eee;
     display: grid;
     top: 20px;
     height: fit-content;
     justify-content: space-around;
-    left: 0;
     margin: 0 auto;
-    position:sticky;
-    right: 0;
+    left: 0;
+}
+.ContainerItemLista{
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    justify-content: flex-end;
+    border: 1px solid rgb(4, 0, 255);
 }
 .ItemLista{
-    width: 100%;
     padding: 10px;
-    border: 1px solid red;
+    border: 1px solid rgb(183, 0, 255);
+    width: fit-content;
+}
+.ContainerDataList{
+    justify-content: flex-start;
+    padding: 10px;
+    border: 1px solid rgb(29, 187, 8);
+    width: 100%;
 }
 
-.ItemLista span{
-    width: auto;
-    padding: 15px;
-    border: 1px solid red;
-}
+
 
