@@ -7,6 +7,15 @@
     text-align: center;
     padding: 20px;
 }
+
+.ContainerMiniList::-webkit-scrollbar{
+    display: block;
+    width: 5px;
+}
+.ContainerMiniList::-webkit-scrollbar-track{
+    background: transparent;
+}
+
 .ContainerMiniList ul{
     list-style-type: none;
 }
