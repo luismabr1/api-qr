@@ -80,7 +80,7 @@ const FormEquipos = (props) =>{
                     </select>
                 </div> 
                  <label>Serial </label>
-                <input className="inputText" defaultValue={serial} type="text" onChange={(e)=>{
+                <input className="inputText" min={3} required defaultValue={serial} type="text" onChange={(e)=>{
                     setSerial(e.target.value)
                 }}/> 
                  <label>Tipo: </label>

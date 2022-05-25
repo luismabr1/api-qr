@@ -42,23 +42,23 @@ const FormUsuarios = (props) =>{
           <div className="CreatePost">
             <div className="uploadPost">
                 <label>nombre: </label>
-                <input className="inputText" type="text" value={nombre} onChange={(e)=> {
+                <input className="inputText" type="text" min={3} required value={nombre} onChange={(e)=> {
                     setNombre(e.target.value)
                 }}/>
                 <label>apellido: </label>
-                <input className="inputText" type="text" value={apellido} onChange={(e)=>{
+                <input className="inputText" type="text" min={3} required value={apellido} onChange={(e)=>{
                     setApellido(e.target.value)
                 }}/>
                 <label>cedula: </label>
-                <input className="inputText" type="text" value={cedula} onChange={(e)=>{
+                <input className="inputText" type="text" min={5} required value={cedula} onChange={(e)=>{
                     setCedula(e.target.value)
                 }}/>
                 <label>Sexo: </label>
-                <input className="inputText" type="text" value={sexo} onChange={(e)=>{
+                <input className="inputText" type="text" min={1} required value={sexo} onChange={(e)=>{
                     setSexo(e.target.value)
                 }}/>
                 <label>Estado: </label>
-                <input className="inputText" type="text" value={estado} onChange={(e)=>{
+                <input className="inputText" type="text" min={1} required value={estado} onChange={(e)=>{
                     setEstado(e.target.value)
                 }}/>
               <label>departamento: </label>

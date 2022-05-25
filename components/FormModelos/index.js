@@ -33,7 +33,7 @@ const listaMarcas = props.marcas
           <div className="CreatePost">
             <div className="uploadPost">
                 <label>Nombre: </label>
-                <input className="inputText" type="text" onChange={(e)=> {
+                <input className="inputText" min={3} required type="text" onChange={(e)=> {
                     setNombre(e.target.value)
                 }}/>
 

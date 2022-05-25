@@ -44,7 +44,7 @@ const FormDepartamentos = (props) =>{
           <div className={styles.CreatePost}>
             <div className="uploadPost">
                 <label>nombre: </label>
-                <input className={styles.inputText} type="text" defaultValue={props.editName} onChange={(e)=> {
+                <input className={styles.inputText} type="text" min={3} required defaultValue={props.editName} onChange={(e)=> {
                     setDepartamento(e.target.value)
                 }}/>
 
