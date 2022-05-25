@@ -34,7 +34,17 @@ export default css`
     height: 100%;
     width: 100%;
     overflow: scroll;
+    scrollbar-width: none;
   }
+
+main::-webkit-scrollbar{
+    display: block;
+    width: 5px;
+}
+main::-webkit-scrollbar-track{
+    background: transparent;
+}
+
   @media (min-width: ${breakpoints.mobile}) {
     main {
       height: 80vh;
