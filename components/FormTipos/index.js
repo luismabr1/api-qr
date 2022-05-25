@@ -17,7 +17,7 @@ const FormTipos = (props) =>{
           body: JSON.stringify({nombre: tipo})
       };
 
-     await fetch('https://api-qr-node.vercel.app/api/user', requestOptions)
+     await fetch('https://server-qr.vercel.app/api/tipos', requestOptions)
           .then(response => response.json())
           .then(data => setTipos(data.id));
 

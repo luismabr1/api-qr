@@ -25,9 +25,9 @@ const FormEquipos = (props) =>{
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ usuario_id:usuario, marca_id:marca, modelo_id:modelo, serial:serial, tipo_id:tipo})
       };
-      fetch('https://api-qr-node.vercel.app/api/user', requestOptions)
+      fetch('https://server-qr.vercel.app/api/equipos', requestOptions)
           .then(response => response.json())
-          .then(data => setEquipo(data.id));
+          .then(data => console.log(data.id));
 
           setTimeout(() => {
             setState('success');
@@ -49,7 +49,7 @@ const FormEquipos = (props) =>{
                         {listaUsuarios.map( user => {
                             console.log(user)
                                     return(
-                                        <option key={user.id} value={user.id} /* defaultValue={props.editUser} */>{user.nombre}</option>
+                                        <option key={user.id}>{user.nombre}</option>
                                     )
                                 }   
                         )}
@@ -60,11 +60,8 @@ const FormEquipos = (props) =>{
                 <div className="caja">
                     <select name="select" defaultValue={props.editMarca} onChange={e => setMarca(e.target.value)}>
                         {listaMarcas.map( marca => {
-                            console.log(marca)
-                                    return(
-
-                                        
-                                        <option key={marca.id} value={marca.id} /* defaultValue={props.editMarca} */>{marca.nombre}</option>
+                                    return( 
+                                        <option key={marca.id} >{marca.nombre}</option>
                                     )
                                 }   
                         )}
@@ -74,9 +71,8 @@ const FormEquipos = (props) =>{
                 <div className="caja">
                     <select name="select" defaultValue={props.editModelo} onChange={e => setModelo(e.target.value)} >  
                         {listaModelos.map(modelo => {
-                            console.log(modelo)
                                     return(
-                                        <option key={modelo.id} value={modelo.id}>{modelo.nombre}</option>
+                                        <option key={modelo.modelo_id} >{modelo.nombre}</option>
                                     )
                                 }   
                         )}
@@ -84,16 +80,15 @@ const FormEquipos = (props) =>{
                     </select>
                 </div> 
                  <label>Serial </label>
-                <input className="inputText" value={serial}  type="text" onChange={(e)=>{
+                <input className="inputText" defaultValue={serial} type="text" onChange={(e)=>{
                     setSerial(e.target.value)
                 }}/> 
                  <label>Tipo: </label>
                 <div className="caja">
                     <select name="select" defaultValue={props.editTipo} onChange={e => setTipo(e.target.value)}>
                         {listaTipos.map( tipo => {
-                            console.log(tipo)
                                     return(
-                                        <option key={tipo.id}value={tipo.id}>{tipo.nombre}</option>
+                                        <option key={tipo.id}>{tipo.nombre}</option>
                                     )
                                 }   
                         )}

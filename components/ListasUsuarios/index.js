@@ -22,13 +22,11 @@ const ListasUsuarios = (props) => {
     const marcas = props.cargos
     const modelos=props.modelos
     const tipos = props.cargos
-    console.log('este user esta solo',equipos)
 
     useEffect(() => {
         if(edit || remove){
             setShowModal(true)
         }
-        console.log(`Editar ${edit} Eliminar ${remove} y el usuario a editar ${users[edit]}`)
       }, [edit, remove])
 
 
@@ -73,9 +71,9 @@ const ListasUsuarios = (props) => {
                         {
                             lists.map(list => {
                                 return(
-                                    <div className={style.ContainerItemLista}>
+                                    <div key={list.id} className={style.ContainerItemLista}>
                                         <div className={style.ContainerDataList}>
-                                            <span key={list.id}>{list.nombre}</span> 
+                                            <span >{list.nombre}</span> 
                                         </div>
                                         <label className={style.ItemLista} onClick={()=> setEdit(list.id)}><Link href="#">Edit</Link></label>
                                         <label className={style.ItemLista} onClick={()=> setRemove(list.id)}><Link href="#">Eliminar</Link></label>
@@ -93,9 +91,9 @@ const ListasUsuarios = (props) => {
                 <div className={style.Lista}>
                     {serial.map(list => {
                             return(
-                                    <div className={style.ContainerItemLista}>
+                                    <div key={list.id} className={style.ContainerItemLista}>
                                         <div className={style.ContainerDataList}>
-                                            <span key={list.id}>{list.serial}</span> 
+                                            <span >{list.serial}</span> 
                                         </div>
                                         <label className={style.ItemLista} onClick={()=> setEdit(list.id)}><Link href="#">Edit</Link></label>
                                         <label className={style.ItemLista} onClick={()=> setRemove(list.id)}><Link href="#">Eliminar</Link></label>

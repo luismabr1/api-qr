@@ -18,7 +18,7 @@ const listaDepartamentos = props.departamentos
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({nombre: nombre, departamento_id: departamento})
       };
-      fetch('https://api-qr-node.vercel.app/api/user', requestOptions)
+      fetch('https://server-qr.vercel.app/api/cargos', requestOptions)
           .then(response => response.json())
           .then(data => setCargo(data.id));
           setTimeout(() => {

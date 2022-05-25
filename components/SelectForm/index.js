@@ -48,7 +48,6 @@ const SelectForm = (props) =>{
 
 ];
 const FormRender = ( {form} ) => {
-    console.log(form)
     switch (form) {
       case "DEPARTAMENTOS":
         return <FormDepartamentos usuarios={users}
@@ -93,7 +92,7 @@ const FormRender = ( {form} ) => {
           <h1>Elegir Formulario</h1>
                 <div className={style.caja}>
                     <select name={style.select} onChange={e => setForm(e.target.value)} >
-                      <option selected>--Escoja el Formulario--</option>
+                      <option defaultValue>--Escoja el Formulario--</option>
                         {Forms.map(form => {
                                     return(
                                         <option key={form.id} value={form.name}>{form.name}</option>

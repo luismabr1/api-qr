@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from './departamentos.module.css' 
 import SubmitButton from 'reactive-button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,18 +7,25 @@ import { faCircleNotch, faThumbsUp, faCircleExclamation } from '@fortawesome/fre
 
 const FormDepartamentos = (props) =>{  
   const [departamento,setDepartamento] = useState("");
+  const [idDepartamento, setIdDepartamento] = useState()
   const [state, setState] = useState('idle');
-  console.log(`Edit Name ${props.editName}`)
 
+  useEffect(() => {
+
+        setIdDepartamento(props.idDepartamento)
+
+  }, [idDepartamento])
+  
   const handleDepartamentos = async (props) => {
+      console.log(`handleDepartamentos ${idDepartamento}`)
       setState('loading');
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({nombre: departamento})
+          body: JSON.stringify({id:idDepartamento, nombre: departamento, is_active:active})
       };
 
-     await fetch('https://api-qr-node.vercel.app/api/user', requestOptions)
+     await fetch('https://server-qr.vercel.app/api/departamentos', requestOptions)
           .then(response => response.json())
           .then(data => setDepartamento(data.id));
 
@@ -37,7 +44,7 @@ const FormDepartamentos = (props) =>{
           <div className={styles.CreatePost}>
             <div className="uploadPost">
                 <label>nombre: </label>
-                <input className={styles.inputText} type="text" value={props.editName} onChange={(e)=> {
+                <input className={styles.inputText} type="text" defaultValue={props.editName} onChange={(e)=> {
                     setDepartamento(e.target.value)
                 }}/>
 

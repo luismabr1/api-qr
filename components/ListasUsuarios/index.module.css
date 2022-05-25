@@ -15,7 +15,6 @@
     width: 100%;
     align-items: center;
     background: #ffffffaa;
-    border: 1px solid red;
     border-bottom: 1px solid #eee;
     display: grid;
     top: 20px;
@@ -29,17 +28,18 @@
     display: flex;
     padding: 10px;
     justify-content: flex-end;
-    border: 1px solid rgb(4, 0, 255);
+/*     border: 1px solid rgb(4, 0, 255); */
 }
 .ItemLista{
     padding: 10px;
-    border: 1px solid rgb(183, 0, 255);
+     border: 1px solid rgb(0, 0, 0); 
     width: fit-content;
+    color: blue;
 }
 .ContainerDataList{
     justify-content: flex-start;
     padding: 10px;
-    border: 1px solid rgb(29, 187, 8);
+    border: 1px solid rgb(1, 1, 1);
     width: 100%;
 }
 

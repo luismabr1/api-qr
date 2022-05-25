@@ -25,7 +25,6 @@ const Modal = ({data, show, users, equipos, departamentos, cargos, marcas, model
     e.preventDefault() 
     onClose()
     console.log('CIERRO')
-    window.location.replace('/adminForm');
 /*     if(data){
       const requestOptions = {
         method: 'POST',
@@ -50,6 +49,8 @@ const Modal = ({data, show, users, equipos, departamentos, cargos, marcas, model
           }).map((departamento) => {
             return (
               <FormDepartamentos 
+              key={dato}
+              idDepartamento={12}
               editName={departamento.nombre}
               usuarios={users}
               marcas={marcas}
@@ -61,14 +62,13 @@ const Modal = ({data, show, users, equipos, departamentos, cargos, marcas, model
 
         ) 
       case "EQUIPOS":
-        console.log(`Aqui esta el equipo a mapear ${dato}`)
         return(
           equipos.filter(equipo => {
-            console.log(`El equipo a mapear ${equipo.id} debe ser igual a ${dato}`)
             return equipo.id === dato; // place your actual check here
           }).map((equipo) => {
             return (
               <FormEquipos
+                key={dato}
                 editUser={equipo.usuario_id}
                 editMarca={equipo.marca_id}
                 editModelo={equipo.modelo_id}
@@ -88,11 +88,11 @@ const Modal = ({data, show, users, equipos, departamentos, cargos, marcas, model
         return(
 
                 users.filter(user => {
-                  console.log(`datos de usuario activo ${user.is_active}`)
                   return user.id == dato; // place your actual check here
                 }).map((user) => {
                   return (
-                    <FormUsuarios  
+                    <FormUsuarios 
+                    key={dato}
                     editName={user.nombre}
                     editApellido={user.apellido}
                     editCedula={user.cedula}
@@ -115,9 +115,9 @@ const Modal = ({data, show, users, equipos, departamentos, cargos, marcas, model
            cargos.filter(cargo => {
              return cargo.id === dato; // place your actual check here
             }).map((cargo) => {
-              console.log(`Este es el departamento${cargo.departamento_id}`)
               return (
                <FormCargos 
+               key={dato}
                editID={cargo.id}
                editName={cargo.nombre}
                editDepartamento={cargo.departamento_id} 

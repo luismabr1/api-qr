@@ -19,13 +19,13 @@ const Modal = ({data, show, form, onClose, children}) => {
   const handleClose = (e) => {
      e.preventDefault() 
     onClose()
-    window.location.replace('/');
+    window.location.replace('/adminForm');
     if(data){
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
       };
-        fetch(`https://server-qr.vercel.app/api/${formMin}/${id}`, requestOptions)
+        fetch(`https://server-qr.vercel.app/api/${formMin}/remove/${id}`, requestOptions)
         .then(response => response.json())
         .then(data => console.log("Exito"));
         
@@ -39,7 +39,7 @@ const Modal = ({data, show, form, onClose, children}) => {
       <div className={styles.modal}>
         <div className={styles.body}>{children}</div>
         <div className={styles.header}>
-            <Link href="/" >
+            <Link href="/adminForm" >
                 <button onClick={handleClose} className={styles.btn}>  
                   <a>volver</a> 
                 </button>
