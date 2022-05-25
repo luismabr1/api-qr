@@ -36,7 +36,7 @@ const FormTipos = (props) =>{
           <div className={styles.CreatePost}>
             <div className="uploadPost">
                 <label>nombre: </label>
-                <input className={styles.inputText} min={3} required type="text" onChange={(e)=> {
+                <input className={styles.inputText} /* min={3} required  */type="text" onChange={(e)=> {
                     setTipos(e.target.value)
                 }}/>
 

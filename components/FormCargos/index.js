@@ -35,7 +35,7 @@ const listaDepartamentos = props.departamentos
           <div className="CreatePost">
             <div className="uploadPost">
                 <label>nombre: </label>
-                <input className="inputText" type="text" min={3} required defaultValue={props.editName} onChange={(e)=> {
+                <input className="inputText" type="text" /* min={3} required */ defaultValue={props.editName} onChange={(e)=> {
                     setNombre(e.target.value)
                 }}/>
 
