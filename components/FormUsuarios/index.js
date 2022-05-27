@@ -1,5 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
 import SubmitButton from 'reactive-button';
+import Dropzone from "../DragDrop";
+import ImageList from "../ImageList";
+import cuid from "cuid";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleNotch, faThumbsUp, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 
@@ -98,6 +101,8 @@ const FormUsuarios = (props) =>{
                         )}
                     </select>
                 </div> 
+
+                <Dropzone />
 
                 <SubmitButton
                     buttonState={state}
